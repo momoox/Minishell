@@ -1,20 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   whitespace.c                                       :+:      :+:    :+:   */
+/*   file_inout.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/04 14:12:59 by momox             #+#    #+#             */
-/*   Updated: 2023/09/18 17:08:10 by momox            ###   ########.fr       */
+/*   Created: 2023/09/17 19:55:40 by momox             #+#    #+#             */
+/*   Updated: 2023/09/17 22:05:38 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	ft_whitespace(char c)
+void	file_inout(t_list *list)
 {
-	if ((c >= 9 && c <= 13) || c == 32)
-		return (1);
-	return (0);
+	t_list	*temp;
+
+	temp = list;
+	while (temp)
+	{
+		if (temp->token == REDIR_IN)
+		{
+			temp->next->token = REDIR_IN;
+			temp = temp->next;
+		}
+		else if (temp->token == REDIR_OUT)
+		{
+			temp->next->token = REDIR_OUT;
+			temp = temp->next;
+		}
+		else if (temp->token == REDIR_APPEND)
+		{
+			temp->next->token = REDIR_APPEND;
+			temp = temp->next;
+		}
+		temp = temp->next;
+	}
 }

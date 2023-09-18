@@ -1,46 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_tab.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/29 20:43:09 by momox             #+#    #+#             */
-/*   Updated: 2023/09/10 16:34:05 by momox            ###   ########.fr       */
+/*   Created: 2023/09/10 21:58:18 by momox             #+#    #+#             */
+/*   Updated: 2023/09/14 15:48:05 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
-// int	len_input(char *s)
-// {
-// 	int	i;
-// 	int	len;
-
-// 	i = 0;
-// 	len = 0;
-// 	while (s[i])
-// 	{
-// 		while (s[i] == ' ')
-// 		{
-// 			len++;
-// 			i++;
-// 		}
-// 		i++;
-// 	}
-// 	return (len + 1);
-// }
-
-void	print_tab(char **tab)
+char	*ft_strjoin(char *s1, char *s2)
 {
-	int	i;
-	int	line;
+	char		*str;
+	size_t		i;
+	size_t		j;
 
 	i = 0;
-	line = 0;
-	while (tab[i])
+	j = 0;
+	if (!s1 || !s2)
+		return (NULL);
+	str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (!str)
+		return (NULL);
+	while (s1[i])
 	{
-		printf("tab line %d = %s\n", line++, tab[i]);
+		str[i] = s1[i];
 		i++;
 	}
+	while (s2[j])
+		str[i++] = s2[j++];
+	str[i] = '\0';
+	free(s1);
+	return (str);
 }

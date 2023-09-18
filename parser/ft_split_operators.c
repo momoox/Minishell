@@ -6,7 +6,7 @@
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 20:22:16 by momox             #+#    #+#             */
-/*   Updated: 2023/09/06 16:01:11 by momox            ###   ########.fr       */
+/*   Updated: 2023/09/17 20:30:49 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,12 @@ size_t	count_op(char const *s, char c)
 	{
 		if (s[i] != c && (s[i + 1] == 0 || s[i + 1] == c))
 			words++;
-		if (s[i] == c)
+		if (s[i] == c && s[i + 1] == c)
+		{
+			op++;
+			i++;
+		}
+		else if (s[i] == c)
 			op++;
 		i++;
 	}
@@ -35,11 +40,15 @@ size_t	count_op(char const *s, char c)
 size_t	lenword_op(const char *s, size_t i, char c)
 {
 	size_t	len;
+	int		limit;
 
 	len = 0;
-	while (s[i] && s[i] == c)
+	limit = 2;
+	if (s[i] == c)
 	{
-		return (1);
+		while (s[i] && s[i] == c && limit--)
+			i++;
+		return (i);
 	}
 	while (s[i] && s[i] != c)
 	{
@@ -54,17 +63,12 @@ char	*cpyword_op(char *s, size_t *i, char c, size_t len)
 	char	*str;
 	size_t	u;
 
+	(void)c;
 	u = 0;
 	str = malloc(sizeof(char) * (len + 1));
 	if (!str)
 		return (NULL);
 	str[len] = 0;
-	if (s[*i] == c)
-	{
-		str[u++] = c;
-		(*i)++;
-		return (str);
-	}
 	while (len)
 	{
 		str[u++] = s[(*i)++];
@@ -73,6 +77,31 @@ char	*cpyword_op(char *s, size_t *i, char c, size_t len)
 	str[u] = '\0';
 	return (str);
 }
+
+// char	*cpyword_op(char *s, size_t *i, char c, size_t len)
+// {
+// 	char	*str;
+// 	size_t	u;
+
+// 	u = 0;
+// 	str = malloc(sizeof(char) * (len + 1));
+// 	if (!str)
+// 		return (NULL);
+// 	str[len] = 0;
+// 	if (s[*i] == c)
+// 	{
+// 		str[u++] = c;
+// 		(*i)++;
+// 		return (str);
+// 	}
+// 	while (len)
+// 	{
+// 		str[u++] = s[(*i)++];
+// 		len--;
+// 	}
+// 	str[u] = '\0';
+// 	return (str);
+// }
 
 char	**freeall_op(char **tab)
 {

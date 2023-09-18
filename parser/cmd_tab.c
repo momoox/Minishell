@@ -1,46 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_tab.c                                        :+:      :+:    :+:   */
+/*   cmd_tab.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/29 20:43:09 by momox             #+#    #+#             */
-/*   Updated: 2023/09/10 16:34:05 by momox            ###   ########.fr       */
+/*   Created: 2023/09/17 20:44:18 by momox             #+#    #+#             */
+/*   Updated: 2023/09/17 22:09:03 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
-// int	len_input(char *s)
-// {
-// 	int	i;
-// 	int	len;
-
-// 	i = 0;
-// 	len = 0;
-// 	while (s[i])
-// 	{
-// 		while (s[i] == ' ')
-// 		{
-// 			len++;
-// 			i++;
-// 		}
-// 		i++;
-// 	}
-// 	return (len + 1);
-// }
-
-void	print_tab(char **tab)
+void	cmd_tab(t_data *data)
 {
-	int	i;
-	int	line;
+	t_list	*temp;
 
-	i = 0;
-	line = 0;
-	while (tab[i])
+	temp = data->list;
+	data->list->cmd = malloc(sizeof(char *) * 1);
+	data->list->cmd[0] = NULL;
+	while (temp && temp->token != PIPE)
 	{
-		printf("tab line %d = %s\n", line++, tab[i]);
-		i++;
+		if (temp->token == COMMAND)
+			data->list->cmd = ft_tabadd_back(data->list->cmd, temp->content);
+		temp = temp->next;
 	}
 }

@@ -1,46 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_tab.c                                        :+:      :+:    :+:   */
+/*   tab_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/29 20:43:09 by momox             #+#    #+#             */
-/*   Updated: 2023/09/10 16:34:05 by momox            ###   ########.fr       */
+/*   Created: 2023/09/10 15:44:31 by momox             #+#    #+#             */
+/*   Updated: 2023/09/13 17:16:29 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
-// int	len_input(char *s)
-// {
-// 	int	i;
-// 	int	len;
-
-// 	i = 0;
-// 	len = 0;
-// 	while (s[i])
-// 	{
-// 		while (s[i] == ' ')
-// 		{
-// 			len++;
-// 			i++;
-// 		}
-// 		i++;
-// 	}
-// 	return (len + 1);
-// }
-
-void	print_tab(char **tab)
+void	tab_env(t_data *data, char **env)
 {
 	int	i;
-	int	line;
+	int	j;
 
 	i = 0;
-	line = 0;
-	while (tab[i])
+	j = 0;
+	while (env[i])
+		i++;
+	data->env = malloc(sizeof(char *) * (i + 1));
+	i = 0;
+	while (env[i])
 	{
-		printf("tab line %d = %s\n", line++, tab[i]);
+		data->env[j] = malloc(sizeof(char) * ft_strlen(env[i]) + 1);
+		ft_strlcpy(data->env[j], env[i], ft_strlen(env[i]) + 1);
+		j++;
 		i++;
 	}
+	data->env[j] = NULL;
 }

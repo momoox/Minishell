@@ -1,46 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_tab.c                                        :+:      :+:    :+:   */
+/*   ft_tab_addback.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/29 20:43:09 by momox             #+#    #+#             */
-/*   Updated: 2023/09/10 16:34:05 by momox            ###   ########.fr       */
+/*   Created: 2023/09/17 21:38:43 by momox             #+#    #+#             */
+/*   Updated: 2023/09/17 21:39:13 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
-// int	len_input(char *s)
-// {
-// 	int	i;
-// 	int	len;
-
-// 	i = 0;
-// 	len = 0;
-// 	while (s[i])
-// 	{
-// 		while (s[i] == ' ')
-// 		{
-// 			len++;
-// 			i++;
-// 		}
-// 		i++;
-// 	}
-// 	return (len + 1);
-// }
-
-void	print_tab(char **tab)
+char	**ft_tabadd_back(char **tab, char *new_str)
 {
-	int	i;
-	int	line;
+	int		len;
+	int		i;
+	char	**new_tab;
 
-	i = 0;
-	line = 0;
-	while (tab[i])
-	{
-		printf("tab line %d = %s\n", line++, tab[i]);
-		i++;
-	}
+	if (!tab || !new_str)
+		return (NULL);
+	len = 0;
+	while (tab[len])
+		len++;
+	new_tab = malloc(sizeof(char *) * (len + 2));
+	if (!new_tab)
+		return (NULL);
+	i = -1;
+	while (tab[++i])
+		new_tab[i] = tab[i];
+	new_tab[i] = new_str;
+	new_tab[i + 1] = NULL;
+	free(tab);
+	return (new_tab);
 }

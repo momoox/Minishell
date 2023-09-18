@@ -6,36 +6,25 @@
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 19:04:02 by momox             #+#    #+#             */
-/*   Updated: 2023/09/06 16:01:23 by momox            ###   ########.fr       */
+/*   Updated: 2023/09/18 17:52:53 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	tokenize(t_data *data)
+void	split_hd(t_list *list)
 {
 	t_list	*temp;
 
-	temp = data->list;
+	temp = list;
 	while (temp)
 	{
-		if (!(ft_strncmp(temp->content, "|", 1)))
-			temp->token = PIPE;
-		else if (!(ft_strncmp(temp->content, "<", 1)))
-			temp->token = REDIR_IN;
-		else if (!(ft_strncmp(temp->content, ">", 1)))
-			temp->token = REDIR_OUT;
-		else if (!(ft_strncmp(temp->content, ">>", 2)))
-			temp->token = REDIR_APPEND;
-		else if (temp->prev
-			&& (temp->prev->token == REDIR_IN
-				|| temp->prev->token == REDIR_OUT
-				|| temp->prev->token == REDIR_APPEND))
-			temp->token = FILES;
-		else
-			temp->token = COMMAND;
-		if (temp->next == NULL)
-			break ;
+		if (!(ft_strncmp(temp->content, "<", 1))
+			&& !(ft_strncmp(temp->next->content, "<", 1)))
+		{
+			temp->content = ft_strjoin(temp->content, temp->next->content);
+			ft_lstdel_here(&list, temp->next);
+		}
 		temp = temp->next;
 	}
 }
@@ -61,7 +50,6 @@ int	split_op(t_data *data, char c)
 		temp = temp->next;
 		ft_lstdel_here(&data->list, save);
 	}
-	//list_back(data->list);
 	return (0);
 }
 

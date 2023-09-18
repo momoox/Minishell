@@ -1,46 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_tab.c                                        :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/29 20:43:09 by momox             #+#    #+#             */
-/*   Updated: 2023/09/10 16:34:05 by momox            ###   ########.fr       */
+/*   Created: 2023/09/14 15:36:22 by momox             #+#    #+#             */
+/*   Updated: 2023/09/14 15:36:51 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
-// int	len_input(char *s)
-// {
-// 	int	i;
-// 	int	len;
-
-// 	i = 0;
-// 	len = 0;
-// 	while (s[i])
-// 	{
-// 		while (s[i] == ' ')
-// 		{
-// 			len++;
-// 			i++;
-// 		}
-// 		i++;
-// 	}
-// 	return (len + 1);
-// }
-
-void	print_tab(char **tab)
+void	ft_putstr_fd(char *s, int fd)
 {
 	int	i;
-	int	line;
 
 	i = 0;
-	line = 0;
-	while (tab[i])
+	if (!s)
+		return ;
+	while (s[i] != '\0')
 	{
-		printf("tab line %d = %s\n", line++, tab[i]);
+		write(fd, &s[i], 1);
 		i++;
 	}
 }

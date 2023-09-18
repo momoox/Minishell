@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split_whitespaces.c                             :+:      :+:    :+:   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/29 21:59:38 by momox             #+#    #+#             */
-/*   Updated: 2023/09/18 17:08:10 by momox            ###   ########.fr       */
+/*   Created: 2023/09/16 17:43:46 by momox             #+#    #+#             */
+/*   Updated: 2023/09/16 17:46:00 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-size_t	count(char *s)
+size_t	count_split(char const *s, char c)
 {
 	size_t	i;
 	size_t	words;
@@ -21,21 +21,21 @@ size_t	count(char *s)
 	words = 0;
 	while (s[i])
 	{
-		if (ft_whitespace(s[i]) == 0 && (s[i + 1] == 0 || ft_whitespace(s[i + 1])))
+		if (s[i] != c && (s[i + 1] == 0 || s[i + 1] == c))
 			words++;
 		i++;
 	}
 	return (words);
 }
 
-size_t	lenword(char *s, size_t i)
+size_t	lenword_split(const char *s, size_t i, char c)
 {
 	size_t	len;
 
 	len = 0;
-	while (ft_whitespace(s[i]) == 1)
+	while (s[i] == c)
 		i++;
-	while (!ft_whitespace(s[i]) && s[i])
+	while (s[i] != c && s[i])
 	{
 		len++;
 		i++;
@@ -43,13 +43,13 @@ size_t	lenword(char *s, size_t i)
 	return (len);
 }
 
-char	*cpyword(char *s, size_t *i, size_t len)
+char	*cpyword_split(const char *s, size_t *i, char c, size_t len)
 {
 	char	*str;
 	size_t	u;
 
 	u = 0;
-	while (ft_whitespace(s[(*i)]))
+	while (s[*i] == c)
 		(*i)++;
 	str = malloc(sizeof(char) * (len + 1));
 	if (!str)
@@ -63,7 +63,7 @@ char	*cpyword(char *s, size_t *i, size_t len)
 	return (str);
 }
 
-char	**freeall(char **tab)
+char	**freeall_split(char **tab)
 {
 	size_t	j;
 
@@ -77,7 +77,7 @@ char	**freeall(char **tab)
 	return (NULL);
 }
 
-char	**ft_split_whitespaces(char *s)
+char	**ft_split(char *s, char c)
 {
 	size_t		i;
 	size_t		j;
@@ -87,14 +87,14 @@ char	**ft_split_whitespaces(char *s)
 	j = 0;
 	if (!s)
 		return (0);
-	tab = malloc(sizeof(char *) * (count(s) + 1));
+	tab = malloc(sizeof(char *) * (count_split(s, c) + 1));
 	if (!tab)
 		return (0);
-	while (j < count(s))
+	while (j < count_split(s, c))
 	{
-		tab[j++] = cpyword(s, &i, lenword(s, i));
+		tab[j++] = cpyword_split(s, &i, c, lenword_split(s, i, c));
 		if (!tab[j - 1])
-			return (freeall(tab));
+			return (freeall_split(tab));
 	}
 	tab[j] = 0;
 	return (tab);

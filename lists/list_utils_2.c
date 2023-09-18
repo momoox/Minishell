@@ -6,7 +6,7 @@
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 22:48:56 by momox             #+#    #+#             */
-/*   Updated: 2023/09/06 16:00:57 by momox            ###   ########.fr       */
+/*   Updated: 2023/09/14 20:23:46 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,30 @@ void	ft_lstadd_here(t_list **lst, t_list *new)
 	}
 }
 
-void	ft_lstdel_here(t_list **first, t_list *node_to_delete)
+void	ft_lstdel_here(t_list **first, t_list *delete)
 {
-	if (!first || !*first || !node_to_delete)
+	if (!first || !*first || !delete)
 		return ;
-	if (node_to_delete->next)
+	if (*first == delete)
+		*first = delete->next;
+	if (delete->next)
+		delete->next->prev = delete->prev;
+	if (delete->prev)
+		delete->prev->next = delete->next;
+	free(delete);
+}
+
+int	size_list_string(t_list *list)
+{
+	t_list	*temp;
+	int		total_len;
+
+	temp = list;
+	total_len = 0;
+	while (temp)
 	{
-		if (node_to_delete->prev)
-			node_to_delete->prev->next = node_to_delete->next;
-		else
-			*first = node_to_delete->next;
+		total_len += ft_strlen(temp->content);
+		temp = temp->next;
 	}
-	if (node_to_delete->next)
-		node_to_delete->next->prev = node_to_delete->prev;
-	else if (!node_to_delete->prev)
-		*first = 0;
-	free(node_to_delete);
+	return (total_len);
 }

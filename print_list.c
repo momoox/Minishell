@@ -1,46 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_tab.c                                        :+:      :+:    :+:   */
+/*   print_list.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/29 20:43:09 by momox             #+#    #+#             */
-/*   Updated: 2023/09/10 16:34:05 by momox            ###   ########.fr       */
+/*   Created: 2023/08/30 16:06:13 by momox             #+#    #+#             */
+/*   Updated: 2023/09/17 22:08:28 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// int	len_input(char *s)
-// {
-// 	int	i;
-// 	int	len;
-
-// 	i = 0;
-// 	len = 0;
-// 	while (s[i])
-// 	{
-// 		while (s[i] == ' ')
-// 		{
-// 			len++;
-// 			i++;
-// 		}
-// 		i++;
-// 	}
-// 	return (len + 1);
-// }
-
-void	print_tab(char **tab)
+void	print_list(t_list *list)
 {
 	int	i;
-	int	line;
 
 	i = 0;
-	line = 0;
-	while (tab[i])
+	while (list)
 	{
-		printf("tab line %d = %s\n", line++, tab[i]);
-		i++;
+		printf("%d: list->content = %s\n", i++, list->content);
+		// printf("list->token = %d\n", list->token);
+		// if (list->next->next == NULL)
+		// 	return ;
+		list = list->next;
 	}
 }
+
