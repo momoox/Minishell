@@ -6,7 +6,7 @@
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 15:38:20 by momox             #+#    #+#             */
-/*   Updated: 2023/09/17 22:09:13 by momox            ###   ########.fr       */
+/*   Updated: 2023/09/19 16:26:51 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,9 @@ void	tab_exec(t_data *data)
 	i = 0;
 	nb_pipe = count_pipe(temp);
 	init_exec(data, nb_pipe);
-	while (temp && i < nb_pipe)
+	while (temp && i < nb_pipe + 1)
 	{
+		printf("i = %d\n", i);
 		if (temp->token == REDIR_IN)
 			data->exec[i].stdin = temp;
 		if (temp->token == COMMAND)

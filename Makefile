@@ -6,7 +6,7 @@
 #    By: momox <momox@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/28 20:23:57 by momox             #+#    #+#              #
-#    Updated: 2023/09/18 17:11:37 by momox            ###   ########.fr        #
+#    Updated: 2023/09/18 18:14:58 by momox            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,6 @@ SRCS = main.c init_struct.c print_tab.c print_token.c\
 		parser/whitespace.c \
 		parser/ft_split_whitespaces.c \
 		parser/ft_split_operators.c \
-		parser/regroup_command.c \
 		parser/tab_exec.c \
 		parser/file_inout.c \
 		parser/tokenize.c \

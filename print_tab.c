@@ -6,7 +6,7 @@
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 20:43:09 by momox             #+#    #+#             */
-/*   Updated: 2023/09/10 16:34:05 by momox            ###   ########.fr       */
+/*   Updated: 2023/09/19 16:25:05 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,17 @@
 // 	return (len + 1);
 // }
 
-void	print_tab(char **tab)
+void	print_tab(t_data *data)
 {
-	int	i;
-	int	line;
+	// int	i;
+	int	u;
 
-	i = 0;
-	line = 0;
-	while (tab[i])
+	// i = 0;
+	u = 0;
+	while (data->exec && data->exec[1].cmd[u])
 	{
-		printf("tab line %d = %s\n", line++, tab[i]);
-		i++;
+		printf("tab line = %s\n", data->exec[1].cmd[u]);
+		// i++;
+		u++;
 	}
 }

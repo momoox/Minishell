@@ -6,7 +6,7 @@
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 21:59:38 by momox             #+#    #+#             */
-/*   Updated: 2023/09/18 17:08:10 by momox            ###   ########.fr       */
+/*   Updated: 2023/09/18 18:15:29 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ size_t	count(char *s)
 	words = 0;
 	while (s[i])
 	{
-		if (ft_whitespace(s[i]) == 0 && (s[i + 1] == 0 || ft_whitespace(s[i + 1])))
+		if (ft_whitespace(s[i]) == 0
+			&& (s[i + 1] == 0 || ft_whitespace(s[i + 1])))
 			words++;
 		i++;
 	}

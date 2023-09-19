@@ -6,7 +6,7 @@
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 15:38:23 by mgeisler          #+#    #+#             */
-/*   Updated: 2023/09/18 17:08:10 by momox            ###   ########.fr       */
+/*   Updated: 2023/09/19 16:21:47 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef struct s_exec
 
 typedef struct s_data
 {
+	int				flag_unlink;
 	char			*input;
 	char			**env;
 	char			**parsed_line;
@@ -101,7 +102,7 @@ void	sig_handler(int signo);
 
 /* parser */
 int		parser(t_data *data);
-void	ft_here_doc(char *breakpoint);
+void	ft_here_doc(char *bp, t_data *data);
 int		split_op(t_data *data, char c);
 void	split_line(t_data *data);
 void	split_hd(t_list *list);
@@ -115,7 +116,7 @@ char	**ft_split_whitespaces(char *s);
 
 /* utils */
 int		len_input(char *s);
-void	print_tab(char **tab);
+void	print_tab(t_data *data);
 
 /* whitespace */
 int		ft_whitespace(char c);

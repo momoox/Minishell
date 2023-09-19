@@ -6,7 +6,7 @@
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 19:04:02 by momox             #+#    #+#             */
-/*   Updated: 2023/09/18 17:52:53 by momox            ###   ########.fr       */
+/*   Updated: 2023/09/18 18:42:42 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,15 +55,21 @@ int	split_op(t_data *data, char c)
 
 void	split_line(t_data *data)
 {
-	int	i;
+	int		i;
+	char	*tab;
+	t_list	*temp;
 
 	i = -1;
 	data->parsed_line = ft_split_whitespaces(data->input);
 	while (data->parsed_line[++i])
-		lstadd_back(&data->list, ft_lstnew(ft_strdup(data->parsed_line[i])));
+	{
+		tab = ft_strdup(data->parsed_line[i]);
+		if (!tab)
+			return ;
+		temp = ft_lstnew(tab);
+		if (!temp)
+			return ;
+		lstadd_back(&data->list, temp);
+	}
 	list_back(data->list);
 }
-
-//lui envoyer la liste chainee, un split qui split sur les |, <, >, et les met dans la liste chainee
-//puis un split qui split sur les espaces et les met dans la liste chainee
-//puis supprimer maillon non split pour le remplacer par un maillon split
