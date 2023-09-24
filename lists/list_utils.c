@@ -6,7 +6,7 @@
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 14:32:42 by momox             #+#    #+#             */
-/*   Updated: 2023/09/18 18:44:33 by momox            ###   ########.fr       */
+/*   Updated: 2023/09/24 19:34:59 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ t_list	*ft_lstnew(char *str)
 	new->content = str;
 	new->next = NULL;
 	new->prev = NULL;
+	new->cmd = NULL;
 	new->flag_delete = 0;
 	return (new);
 }

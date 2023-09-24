@@ -6,7 +6,7 @@
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 15:38:23 by mgeisler          #+#    #+#             */
-/*   Updated: 2023/09/19 16:21:47 by momox            ###   ########.fr       */
+/*   Updated: 2023/09/24 20:00:55 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ void	sig_handler(int signo);
 
 /* parser */
 int		parser(t_data *data);
+int		check_quote(t_data *data);
 void	ft_here_doc(char *bp, t_data *data);
 int		split_op(t_data *data, char c);
 void	split_line(t_data *data);
@@ -136,6 +137,9 @@ int		size_list_string(t_list *list);
 void	init_data(t_data *data);
 
 void	print_list(t_list *list);
+void	print_exec(t_data *data);
+void	print_tab(t_data *data);
+void	printtab2(char **tab);
 void	print_token(t_list *list);
 
 #endif

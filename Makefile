@@ -6,7 +6,7 @@
 #    By: momox <momox@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/28 20:23:57 by momox             #+#    #+#              #
-#    Updated: 2023/09/18 18:14:58 by momox            ###   ########.fr        #
+#    Updated: 2023/09/19 18:46:17 by momox            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRCS = main.c init_struct.c print_tab.c print_token.c\
 		libft/ft_split.c \
 		libft/ft_tab_addback.c \
 		parser/parser.c \
+		parser/check_quote.c \
 		parser/split_commands.c \
 		parser/whitespace.c \
 		parser/ft_split_whitespaces.c \
