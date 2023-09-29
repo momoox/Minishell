@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
+/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 16:21:33 by momox             #+#    #+#             */
-/*   Updated: 2023/09/29 22:36:20 by oliove           ###   ########.fr       */
+/*   Updated: 2023/09/29 23:34:38 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ int	parser(t_data *data)
 {
 	// if (check_quote(data->input, ft_strlen(data->input)) != '0')
 	// 	exit(0);
+	print_tab(data);
 	split_line(data);
+	print_list(data->list);
 	env_check(data);
 	if (ft_strchr(data->input, '|'))
 		split_op(data, '|');
@@ -30,8 +32,7 @@ int	parser(t_data *data)
 	cmd_tab(data);
 	file_inout(data->list);
 	tab_exec(data);
-	// print_list(data->list);
-	//print_tab(data);
+	// print_exec(data);
 	//print_token(data->list);
 	//envoyer data
 	return (0);

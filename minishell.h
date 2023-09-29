@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
+/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 15:38:23 by mgeisler          #+#    #+#             */
-/*   Updated: 2023/09/29 22:38:06 by oliove           ###   ########.fr       */
+/*   Updated: 2023/09/29 23:37:40 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,7 @@ int		size_list_string(t_list *list);
 
 /* init_struct */
 void	init_data(t_data *data);
+void	reinit(t_data *data);
 
 void	print_list(t_list *list);
 void	print_exec(t_data *data);
@@ -144,7 +145,4 @@ void	print_tab(t_data *data);
 void	printtab2(char **tab);
 void	print_token(t_list *list);
 
-/*olive*/
-int	count_pipe(t_list *list);
-void	run_exec(t_data *data);
 #endif

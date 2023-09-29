@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
+/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 15:40:29 by mgeisler          #+#    #+#             */
-/*   Updated: 2023/09/29 22:49:11 by oliove           ###   ########.fr       */
+/*   Updated: 2023/09/29 23:37:46 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	reader(t_data *data)
 	{
 		rl_catch_signals = 0;
 		signal(SIGINT, sig_handler);
-		init_data(data);
+		reinit(data);
 		data->input = readline("minishell> ");
 		if (!data->input)
 			break ;
@@ -40,7 +40,6 @@ void	reader(t_data *data)
 		}
 		add_history(data->input);
 		parser(data);
-		run_exec(data);
 		free(data->input);
 	}
 }
@@ -51,6 +50,7 @@ int	main(int argc, char **argv, char **env)
 
 	(void)argc;
 	(void)argv;
+	init_data(&data);
 	tab_env(&data, env);
 	reader(&data);
 }

@@ -6,7 +6,7 @@
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 18:19:24 by momox             #+#    #+#             */
-/*   Updated: 2023/09/28 15:39:31 by momox            ###   ########.fr       */
+/*   Updated: 2023/09/29 22:50:02 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ char	check_quote(char *str, int index)
 	i = 0;
 	while (str[i] && i != index)
 	{
-		if (str[i] == '\'' || str[i] == '\"')
-			quote = str[i];
-		else if (quote != '0' && (str[i] == '\'' || str[i] == '\"'))
+		if (quote != '0' && (str[i] == '\'' || str[i] == '\"'))
 			quote = '0';
+		else if (str[i] == '\'' || str[i] == '\"')
+			quote = str[i];
 		i++;
 	}
 	if (quote != '0')
