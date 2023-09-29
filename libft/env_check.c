@@ -6,11 +6,30 @@
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 17:13:21 by momox             #+#    #+#             */
-/*   Updated: 2023/09/12 16:09:17 by momox            ###   ########.fr       */
+/*   Updated: 2023/09/26 20:11:12 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+void	sub_replace(t_data *data)
+{
+	t_list	*temp;
+	int		i;
+
+	temp = data->list;
+	while (temp)
+	{
+		i = 0;
+		while (temp->content[i])
+		{
+			if (temp->content[i] == '$')
+				temp->content[i] = 26;
+			i++;
+		}
+		temp = temp->next;
+	}
+}
 
 int	env_pos(char *arg)
 {
@@ -59,6 +78,7 @@ void	env_check(t_data *data)
 	char	*replace;
 	t_list	*temp;
 
+	// sub_replace(data);
 	temp = data->list;
 	while (temp)
 	{

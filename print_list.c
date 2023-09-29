@@ -6,7 +6,7 @@
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 16:06:13 by momox             #+#    #+#             */
-/*   Updated: 2023/09/24 19:54:45 by momox            ###   ########.fr       */
+/*   Updated: 2023/09/24 21:20:16 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 void	print_list(t_list *list)
 {
-	// int	i;
-
-	// i = 0;
 	while (list)
 	{
 		printf("list->content = %s\n", list->content);

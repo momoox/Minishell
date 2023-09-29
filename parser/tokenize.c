@@ -6,7 +6,7 @@
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 20:13:11 by momox             #+#    #+#             */
-/*   Updated: 2023/09/18 19:47:19 by momox            ###   ########.fr       */
+/*   Updated: 2023/09/24 21:21:12 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_here_doc(char *bp, t_data *data)
 	unlink(".here_doc_minishell_tro_bien");
 	data->flag_unlink = 1;
 	//avoir un flag pour savoir si unlink et oliv unlink
-	//ctrl c fonctionne pas, sort de heredoc
+	//ctrl c fonctionne pas, doit sortir de heredoc
 	free(line);
 }
 

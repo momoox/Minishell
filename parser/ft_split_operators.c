@@ -6,7 +6,7 @@
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 20:22:16 by momox             #+#    #+#             */
-/*   Updated: 2023/09/17 20:30:49 by momox            ###   ########.fr       */
+/*   Updated: 2023/09/26 16:49:22 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,11 @@ size_t	lenword_op(const char *s, size_t i, char c)
 	return (len);
 }
 
-char	*cpyword_op(char *s, size_t *i, char c, size_t len)
+char	*cpyword_op(char *s, size_t *i, size_t len)
 {
 	char	*str;
 	size_t	u;
 
-	(void)c;
 	u = 0;
 	str = malloc(sizeof(char) * (len + 1));
 	if (!str)
@@ -77,31 +76,6 @@ char	*cpyword_op(char *s, size_t *i, char c, size_t len)
 	str[u] = '\0';
 	return (str);
 }
-
-// char	*cpyword_op(char *s, size_t *i, char c, size_t len)
-// {
-// 	char	*str;
-// 	size_t	u;
-
-// 	u = 0;
-// 	str = malloc(sizeof(char) * (len + 1));
-// 	if (!str)
-// 		return (NULL);
-// 	str[len] = 0;
-// 	if (s[*i] == c)
-// 	{
-// 		str[u++] = c;
-// 		(*i)++;
-// 		return (str);
-// 	}
-// 	while (len)
-// 	{
-// 		str[u++] = s[(*i)++];
-// 		len--;
-// 	}
-// 	str[u] = '\0';
-// 	return (str);
-// }
 
 char	**freeall_op(char **tab)
 {
@@ -132,7 +106,7 @@ char	**ft_split_operators(char *s, char c)
 		return (0);
 	while (j < count_op(s, c))
 	{
-		tab[j++] = cpyword_op(s, &i, c, lenword_op(s, i, c));
+		tab[j++] = cpyword_op(s, &i, lenword_op(s, i, c));
 		if (!tab[j - 1])
 			return (freeall_op(tab));
 	}

@@ -6,7 +6,7 @@
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 15:38:20 by momox             #+#    #+#             */
-/*   Updated: 2023/09/24 20:00:43 by momox            ###   ########.fr       */
+/*   Updated: 2023/09/24 21:28:27 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,12 +82,3 @@ void	tab_exec(t_data *data)
 	init_exec(data, nb_pipe);
 	create_tab(data, temp, i, nb_pipe);
 }
-		// if (data->exec[i].stdin)
-		// 	printf("stdin exec[%d] = %s\n", i, data->exec[i].stdin->content);
-		// if (data->exec[i].stdout)
-		// 	printf("stdout exec [%d] = %s\n", i, data->exec[i].stdout->content);
-		// if (data->exec[i].cmd)
-		// 	printtab2(data->exec[i].cmd);
-//copy temp vers struct fonctionne pas
-//il est passé où le cat bordel
-//temp de data inutile

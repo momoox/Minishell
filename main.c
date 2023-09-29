@@ -6,7 +6,7 @@
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 15:40:29 by mgeisler          #+#    #+#             */
-/*   Updated: 2023/09/18 18:07:17 by momox            ###   ########.fr       */
+/*   Updated: 2023/09/29 21:13:46 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ void	reader(t_data *data)
 {
 	while (1)
 	{
+		rl_catch_signals = 0;
 		signal(SIGINT, sig_handler);
+		init_data(data);
 		data->input = readline("minishell> ");
 		if (!data->input)
 			break ;
@@ -48,7 +50,6 @@ int	main(int argc, char **argv, char **env)
 
 	(void)argc;
 	(void)argv;
-	init_data(&data);
 	tab_env(&data, env);
 	reader(&data);
 }
