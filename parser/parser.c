@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
+/*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 16:21:33 by momox             #+#    #+#             */
-/*   Updated: 2023/09/29 21:13:24 by momox            ###   ########.fr       */
+/*   Updated: 2023/09/29 22:36:20 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	parser(t_data *data)
 	cmd_tab(data);
 	file_inout(data->list);
 	tab_exec(data);
-	print_list(data->list);
+	// print_list(data->list);
 	//print_tab(data);
 	//print_token(data->list);
 	//envoyer data

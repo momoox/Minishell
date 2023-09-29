@@ -1,0 +1,219 @@
+// Pour implémenter la gestion des tuyaux (pipes) et des commandes, vous pouvez suivre ces étapes générales :
+
+// 1. Assurez-vous que votre structure t_list (telle que définie dans votre code existant) peut stocker les informations nécessaires pour 
+    //les commandes et les tuyaux. Vous avez déjà une énumération e_token qui peut aider à identifier le type de token (pipe, commande, etc.).
+
+// 2. Dans votre fonction parser(data), lors de l'analyse de l'entrée de l'utilisateur, vous devrez détecter les pipes et diviser les commandes 
+    //en conséquence. Par exemple, si l'utilisateur entre "commande1 | commande2", vous devez créer deux structures t_list distinctes, une pour 
+    //chaque commande, et définir le type de token approprié (PIPE) pour la première structure.
+
+// 3. Ensuite, créez des tuyaux (pipes) pour chaque paire de commandes consécutives. Vous pouvez utiliser la fonction pipe() pour cela. Assurez-vous 
+    //de manipuler les descripteurs de fichier (fd) correctement.
+
+// 4. Enfin, dans la boucle principale de votre shell, lorsque vous exécutez les commandes, assurez-vous de rediriger l'entrée et la sortie standard 
+    //en fonction des descripteurs de fichiers appropriés. Pour cela, vous pouvez utiliser les fonctions dup2() et close().
+
+// 5. Assurez-vous également de gérer la communication entre les commandes à l'aide des tuyaux. Vous devrez peut-être ajuster les descripteurs de 
+    //fichiers pour rediriger la sortie de la première commande vers l'entrée de la seconde.
+
+// 6. N'oubliez pas de libérer toutes les ressources appropriées, y compris les descripteurs de fichiers, après l'exécution des commandes.
+
+Cela devrait vous aider à mettre en place la gestion des tuyaux et des commandes dans votre shell. Si vous avez besoin de détails plus spécifiques ou d'aide pour une partie particulière de l'implémentation, n'hésitez pas à poser des questions supplémentaires.
+
+
+
+// Bien sûr, plongeons plus en profondeur dans l'étape 2 pour clarifier comment vous pouvez détecter les tuyaux (pipes) et diviser les commandes dans votre fonction parser(data).
+
+// L'idée générale est de parcourir la chaîne d'entrée de l'utilisateur caractère par caractère et de reconnaître les tuyaux '|' qui séparent les commandes.
+
+// Voici un exemple simplifié de ce que vous pouvez faire dans votre fonction parser(data) :
+
+void parser(t_data *data)
+{
+    // Assumez que data->input contient la commande entrée par l'utilisateur.
+    char *input = data->input;
+
+    // Commencez par initialiser des variables pour suivre la position actuelle dans la chaîne et pour détecter les tuyaux.
+    int position = 0;
+    int in_command = 1; // Un indicateur pour savoir si nous sommes dans une commande.
+
+    while (input[position] != '\0')
+    {
+        if (input[position] == '|')
+        {
+            // Nous avons détecté un tuyau. Cela signifie que nous avons terminé la commande précédente.
+            // Créez une nouvelle structure t_list pour stocker cette commande.
+            t_list *command_node = create_command_node();
+            
+            // Définissez le type de token comme PIPE pour cette structure.
+            command_node->token = PIPE;
+            
+            // Ajoutez cette structure à une liste chaînée ou un autre conteneur pour les commandes.
+            add_command_to_list(data, command_node);
+
+            // Passez à la commande suivante (ignorez l'espace après le tuyau).
+            position++;
+            while (input[position] == ' ')
+                position++;
+            in_command = 1;
+        }
+        else
+        {
+            // Nous sommes dans une commande. Vous devez maintenant extraire la commande jusqu'à ce que vous atteigniez un tuyau ou la fin de la chaîne.
+            // Créez une nouvelle structure t_list pour stocker cette partie de la commande.
+            t_list *command_part_node = create_command_part_node();
+            
+            // Remplissez la structure avec la partie de la commande actuelle.
+            // Assurez-vous de gérer les citations et les espaces correctement ici.
+            // Par exemple, si l'utilisateur entre "commande1 'argument 1' | commande2",
+            // vous devez gérer correctement les citations.
+            
+            // Ajoutez cette structure à la commande actuelle dans la liste ou le conteneur des commandes en cours.
+            add_command_part_to_current_command(data, command_part_node);
+
+            // Passez au caractère suivant.
+            position++;
+        }
+    }
+    
+    // Assurez-vous de traiter la dernière commande une fois que la boucle est terminée.
+    if (in_command)
+    {
+        // Créez une nouvelle structure t_list pour stocker cette dernière commande.
+        t_list *last_command_node = create_command_node();
+        
+        // Définissez le type de token comme COMMANDE pour cette structure.
+        last_command_node->token = COMMAND;
+        
+        // Ajoutez cette structure à la liste ou au conteneur des commandes.
+        add_command_to_list(data, last_command_node);
+    }
+}
+
+
+// Pour utiliser `fork()` avec `execve()` afin de créer un processus enfant qui exécute une commande 
+// externe, vous pouvez suivre cette structure générale :
+
+void ft_pipe(char *cmd, char **env)
+{
+    pid_t pid;
+    int fd_pipe[2];
+
+    if (pipe(fd_pipe) == -1)
+        exit(0);
+
+    pid = fork();
+    if (pid == -1)
+        exit(0);
+
+    if (!pid)
+    {
+        // Code du processus enfant.
+        close(fd_pipe[0]); // Fermez l'extrémité de lecture du tuyau dans le processus enfant.
+        dup2(fd_pipe[1], 1); // Redirigez la sortie standard vers l'extrémité d'écriture du tuyau.
+        close(fd_pipe[1]); // Fermez l'extrémité d'écriture du tuyau.
+
+        // Maintenant, exécutez la commande à l'aide de execve. Assurez-vous que le chemin vers l'exécutable est correct.
+        execve(cmd, NULL, env);
+
+        // Si execve échoue, vous
+// Cette fonction de parsing semble être utilisée pour parcourir une liste chaînée de structures 
+//t_list (votre liste de commandes et de tokens) et organiser ces structures en fonction de leur type 
+//de token. En particulier, elle semble être utilisée pour organiser les structures en groupes d'exécution
+// qui seront gérés ultérieurement.
+
+// Voici une explication détaillée de ce que cette fonction de parsing fait :
+
+// 1. La boucle while parcourt la liste chaînée des structures t_list (temp) tant qu'il y a des
+// éléments (temp && i < nb_pipe).
+
+// 2. Pour chaque élément de la liste (représenté par temp), la fonction vérifie le type de token de 
+//cette structure t_list.
+
+// 3. Si le token est REDIR_IN, cela signifie que la structure représente une redirection d'entrée 
+//(par exemple, "<"). Dans ce cas, la structure t_list est associée à l'entrée standard (stdin) de 
+//l'exécution actuelle (définie par i). Elle est stockée dans data->exec[i].stdin.
+
+// 4. Si le token est COMMAND, cela signifie que la structure représente une commande. La commande (cmd) 
+//est extraite de la structure t_list associée à cette commande, et elle est stockée dans data->exec[i].cmd.
+
+// 5. Si le token est REDIR_OUT ou REDIR_APPEND, cela signifie que la structure représente une redirection
+// de sortie (par exemple, ">" ou ">>"). Dans ce cas, la structure t_list est associée à la sortie 
+//standard (stdout) de l'exécution actuelle, et elle est stockée dans data->exec[i].stdout.
+
+// 6. Si le token est PIPE et data->exec[i].stdin est NULL, cela signifie que la structure t_list est le 
+//début d'une nouvelle commande dans un pipeline (par exemple, "|"). Dans ce cas, la structure t_list est 
+//associée à l'entrée standard (stdin) de l'exécution actuelle.
+
+// 7. Si le token est PIPE et data->exec[i].stdout est NULL, cela signifie que la structure t_list est la 
+//fin d'une commande dans un pipeline. Dans ce cas, la structure t_list est associée à la sortie standard 
+//(stdout) de l'exécution actuelle.
+
+// 8. Après chaque traitement, la variable temp est mise à jour pour passer à l'élément suivant dans la 
+//liste chaînée, et la variable i est incrémentée pour passer à la prochaine exécution.
+
+// En résumé, cette fonction de parsing organise les structures t_list en groupes d'exécution,
+// en associant les structures appropriées aux entrées standard (stdin), aux sorties standard (stdout) 
+//et aux commandes. Elle semble préparer les données pour une exécution ultérieure, où chaque groupe 
+//d'exécution sera traité conformément à sa configuration.
+
+
+void ft_pipex(t_data *data)
+{
+    int i;
+    int fd_stdin;
+    int fd_stdout;
+    int fd_pipe[2];
+    pid_t pid;
+
+    if (pipe(fd_pipe) == -1)
+        exit(0);
+
+    pid = fork();
+    if (pid == -1)
+        exit(0);
+
+    if (pid == 0) // Code du processus enfant
+    {
+        i = ft_pipex2(data, &fd_stdin, &fd_stdout);
+
+        if (i == 0) // Si vous êtes dans le premier processus enfant
+        {
+            dup2(fd_pipe[1], 1); // Redirigez la sortie standard vers l'extrémité d'écriture du tuyau.
+            close(fd_pipe[0]); // Fermez l'extrémité de lecture du tuyau.
+
+            // Exécutez la première commande dans le pipeline.
+            execve(data->exec->cmd[0], data->exec->cmd, data->env);
+            perror("execve a échoué");
+            exit(EXIT_FAILURE);
+        }
+        else if (i < count_pipe(data->list)) // Si vous êtes dans un processus enfant intermédiaire
+        {
+            // Fermez les descripteurs de fichiers non utilisés.
+            close(fd_pipe[0]); // Fermez l'extrémité de lecture du tuyau.
+            close(fd_pipe[1]); // Fermez l'extrémité d'écriture du tuyau.
+
+            // Exécutez une commande intermédiaire dans le pipeline.
+            ft_pipe(data);
+        }
+        else // Si vous êtes dans le dernier processus enfant
+        {
+            dup2(fd_pipe[0], 0); // Redirigez l'entrée standard depuis l'extrémité de lecture du tuyau.
+            close(fd_pipe[1]); // Fermez l'extrémité d'écriture du tuyau.
+
+            // Exécutez la dernière commande dans le pipeline.
+            execve(data->exec->cmd[0], data->exec->cmd, data->env);
+            perror("execve a échoué");
+            exit(EXIT_FAILURE);
+        }
+    }
+    else // Code du processus parent
+    {
+        // Fermez les descripteurs de fichiers non utilisés dans le processus parent.
+        close(fd_pipe[0]); // Fermez l'extrémité de lecture du tuyau.
+        close(fd_pipe[1]); // Fermez l'extrémité d'écriture du tuyau.
+
+        // Attendez la fin du processus enfant.
+        wait(NULL);
+    }
+}
