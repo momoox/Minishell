@@ -6,7 +6,7 @@
 /*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 00:14:52 by oliove            #+#    #+#             */
-/*   Updated: 2023/09/29 22:44:14 by oliove           ###   ########.fr       */
+/*   Updated: 2023/09/29 23:00:15 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,9 @@ char *ft_my_path(t_data *data,char *cmd, char **env)
 	char	*path;
 	printf("val cmd %s\n",cmd);
 	c_args = ft_split(cmd, ' ');
+	printf("val2 cmd %s\n", data->env[0]);
 	path = ft_path_dir(c_args, ft_my_var(data, "PATH"), -1);
+	
 	// printf("var = [%s]\n",ft_my_var(data,cmd));
 	return (path);	
 
@@ -73,15 +75,16 @@ char *ft_my_var(t_data *data,char *str)
 	strcat(var,"=");
 	while (data->env && data->env[i])
 	{
+		printf("prout\n");
 		if(strncmp(data->env[i], var, strlen(var)) == 0)
 			break;
 		i++;	
 	}
 	size = strlen(var);
 	free(var);
-	if (!data->env[i])
-		return( NULL);
-	return(data->env[i]+size);
+	// if (!data->env[i])
+		// return( NULL);
+	return(data->env[i]);//+size);
 }
 
 void	exece(t_data *data,char *cmd, char **env)
