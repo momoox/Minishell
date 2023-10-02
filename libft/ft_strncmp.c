@@ -6,7 +6,7 @@
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 15:48:07 by momox             #+#    #+#             */
-/*   Updated: 2023/09/18 19:45:17 by momox            ###   ########.fr       */
+/*   Updated: 2023/10/02 19:13:03 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,5 @@ int	ft_strncmp(char *s1, char *s2, size_t len)
 	{
 		i++;
 	}
-	return ((unsigned char) s1[i] - (unsigned char) s2[i]);
+	return (s1[i] - s2[i]);
 }

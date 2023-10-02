@@ -6,7 +6,7 @@
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 16:06:13 by momox             #+#    #+#             */
-/*   Updated: 2023/10/02 00:06:44 by momox            ###   ########.fr       */
+/*   Updated: 2023/10/02 19:31:06 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	print_list(t_list *list)
 	printf("=====PRINT LIST=====\n");
 	while (list)
 	{
-		printf("list->content = %s\n", list->content);
+		printf("list->content = %s\n\n", list->content);
 		// if (list->token == COMMAND && list->cmd)
 		// {
 		// 	printf("tab 0 = %s\n", list->cmd[0]);
@@ -25,7 +25,7 @@ void	print_list(t_list *list)
 		// }
 		list = list->next;
 	}
-	printf("====================\n");
+	printf("====================\n\n");
 }
 		// if (list->next->next == NULL)
 		// printf("list->token = %d\n", list->token);

@@ -6,17 +6,17 @@
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 18:02:40 by momox             #+#    #+#             */
-/*   Updated: 2023/09/18 18:14:32 by momox            ###   ########.fr       */
+/*   Updated: 2023/10/02 18:37:50 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-char	*ft_substr(char *s, int start, size_t len)
+char	*ft_substr(char *s, int start, int len)
 {
-	char			*str;
-	unsigned int	i;
-	size_t			slen;
+	char	*str;
+	int		i;
+	int		slen;
 
 	slen = 0;
 	i = 0;

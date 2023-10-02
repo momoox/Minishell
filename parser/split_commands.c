@@ -6,7 +6,7 @@
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 19:04:02 by momox             #+#    #+#             */
-/*   Updated: 2023/10/02 03:11:46 by momox            ###   ########.fr       */
+/*   Updated: 2023/10/02 19:12:48 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	split_hd(t_list *list)
 	temp = list;
 	while (temp)
 	{
-		if (!(ft_strncmp(temp->content, "<", 1))
-			&& !(ft_strncmp(temp->next->content, "<", 1)))
+		if (!ft_strncmp(temp->content, "<", 1)
+			&& !ft_strncmp(temp->next->content, "<", 1))
 		{
 			temp->content = ft_strjoin(temp->content, temp->next->content);
 			ft_lstdel_here(&list, temp->next);

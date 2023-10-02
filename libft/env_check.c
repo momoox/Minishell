@@ -6,30 +6,11 @@
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 17:13:21 by momox             #+#    #+#             */
-/*   Updated: 2023/09/26 20:11:12 by momox            ###   ########.fr       */
+/*   Updated: 2023/10/02 19:35:08 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-void	sub_replace(t_data *data)
-{
-	t_list	*temp;
-	int		i;
-
-	temp = data->list;
-	while (temp)
-	{
-		i = 0;
-		while (temp->content[i])
-		{
-			if (temp->content[i] == '$')
-				temp->content[i] = 26;
-			i++;
-		}
-		temp = temp->next;
-	}
-}
 
 int	env_pos(char *arg)
 {
@@ -50,9 +31,9 @@ int	is_env(char *arg)
 	int	i;
 	int	flag;
 
-	i = -1;
+	i = 0;
 	flag = 0;
-	while (arg[++i])
+	while (arg[i])
 	{
 		if (arg[i] == '$')
 		{
@@ -67,6 +48,7 @@ int	is_env(char *arg)
 			}
 			break ;
 		}
+		i++;
 	}
 	return (flag);
 }
@@ -78,12 +60,15 @@ void	env_check(t_data *data)
 	char	*replace;
 	t_list	*temp;
 
-	// sub_replace(data);
 	temp = data->list;
 	while (temp)
 	{
-		while (is_env(temp->content) > 0)
+		if (is_env(temp->content) > 0)
 		{
+			if (is_between_quote(temp->content, 0) == '\''
+				&& is_between_quote(temp->content,
+					ft_strlen(temp->content) - 2) == '\'')
+				break ;
 			env_len = is_env(temp->content);
 			var_env = get_env(temp->content, env_len);
 			replace = identify_replace(data, var_env);

@@ -6,7 +6,7 @@
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 15:38:23 by mgeisler          #+#    #+#             */
-/*   Updated: 2023/10/02 03:47:39 by momox            ###   ########.fr       */
+/*   Updated: 2023/10/02 18:37:25 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ size_t	ft_strlcpy(char *dest, char *src, size_t size);
 int		ft_strlen(char *str);
 int		ft_strncmp(char *s1, char *s2, size_t len);
 void	tab_env(t_data *data, char **env);
-char	*ft_substr(char *s, int start, size_t len);
+char	*ft_substr(char *s, int start, int len);
 void	env_check(t_data *data);
 int		is_env(char *arg);
 int		env_pos(char *arg);

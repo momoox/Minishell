@@ -20,6 +20,7 @@ int	check_char(char *str)
 	while (str[i])
 	{
 		if (str[i] == 92 || str[i] == '(' || str[i] == ')'
+			|| str[i] == ';'
 			|| (str[i] == '&' && str[i + 1] == '&')
 			|| (str[i] == '|' && str[i + 1] == '|'))
 		{
