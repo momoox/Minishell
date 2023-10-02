@@ -6,7 +6,7 @@
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 19:04:02 by momox             #+#    #+#             */
-/*   Updated: 2023/09/29 23:29:37 by momox            ###   ########.fr       */
+/*   Updated: 2023/10/02 01:48:02 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	split_op(t_data *data, char c)
 	while (temp)
 	{
 		save = temp;
+		printf("\nnew split\n");
 		data->parsed_line = ft_split_operators(temp->content, c);
 		i = -1;
 		while (data->parsed_line[++i])
@@ -58,10 +59,8 @@ void	split_line(t_data *data)
 	int		i;
 	char	*tab;
 	t_list	*temp;
-	t_list	*list;
 
 	i = -1;
-	list = NULL;
 	data->parsed_line = ft_split_whitespaces(data->input);
 	while (data->parsed_line[++i])
 	{
@@ -71,7 +70,7 @@ void	split_line(t_data *data)
 		temp = ft_lstnew(tab);
 		if (!temp)
 			return ;
-		lstadd_back(&list, temp);
+		lstadd_back(&data->list, temp);
 	}
-	//list_back(data->list);
+	list_back(data->list);
 }

@@ -6,37 +6,43 @@
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 21:59:38 by momox             #+#    #+#             */
-/*   Updated: 2023/09/29 23:31:35 by momox            ###   ########.fr       */
+/*   Updated: 2023/10/02 02:13:54 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-size_t	count(char *s)
+int	count(char *s)
 {
-	size_t	i;
-	size_t	words;
+	int	i;
+	int	words;
 
-	i = 0;
+	if (s[0] && !s[1])
+		return (1);
 	words = 0;
+	i = 1;
 	while (s[i])
 	{
-		if (ft_whitespace(s[i]) == 0
-			&& (s[i + 1] == 0 || ft_whitespace(s[i + 1])))
+		if (ft_whitespace(s[i]) 
+			&& is_between_quote(s, i) == '0'
+			&& !ft_whitespace(s[i - 1]))
 			words++;
 		i++;
 	}
+	words++;
 	return (words);
 }
 
-size_t	lenword(char *s, size_t i)
+int	lenword(char *s, int i)
 {
-	size_t	len;
+	int	len;
 
 	len = 0;
-	while (ft_whitespace(s[i]) == 1)
+	while (s[i] && is_between_quote(s, i) == '0' && ft_whitespace(s[i]))
 		i++;
-	while (!ft_whitespace(s[i]) && s[i])
+	while (s[i]
+		&& (is_between_quote(s, i) != '0'
+			|| (is_between_quote(s, i) == '0' && !ft_whitespace(s[i]))))
 	{
 		len++;
 		i++;
@@ -44,13 +50,13 @@ size_t	lenword(char *s, size_t i)
 	return (len);
 }
 
-char	*cpyword(char *s, size_t *i, size_t len)
+char	*cpyword(char *s, int *i, int len)
 {
 	char	*str;
-	size_t	u;
+	int		u;
 
 	u = 0;
-	while (ft_whitespace(s[(*i)]))
+	while ((ft_whitespace(s[(*i)]) && is_between_quote(s, *i) == '0'))
 		(*i)++;
 	str = malloc(sizeof(char) * (len + 1));
 	if (!str)
@@ -66,7 +72,7 @@ char	*cpyword(char *s, size_t *i, size_t len)
 
 char	**freeall(char **tab)
 {
-	size_t	j;
+	int	j;
 
 	j = 0;
 	while (tab[j])
@@ -80,9 +86,9 @@ char	**freeall(char **tab)
 
 char	**ft_split_whitespaces(char *s)
 {
-	size_t		i;
-	size_t		j;
-	char		**tab;
+	int		i;
+	int		j;
+	char	**tab;
 
 	i = 0;
 	j = 0;

@@ -6,51 +6,55 @@
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 20:22:16 by momox             #+#    #+#             */
-/*   Updated: 2023/09/26 16:49:22 by momox            ###   ########.fr       */
+/*   Updated: 2023/10/02 02:19:28 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-size_t	count_op(char const *s, char c)
+int	count_op(char *s, char c)
 {
-	size_t	i;
-	size_t	words;
-	int		op;
+	int	i;
+	int	words;
+	int	op;
 
 	i = 0;
 	words = 0;
 	op = 0;
 	while (s[i])
 	{
-		if (s[i] != c && (s[i + 1] == 0 || s[i + 1] == c))
+		if (s[i] != c && (!s[i + 1] || (s[i + 1] == c
+					&& is_between_quote(s, i + 1) == '0')))
 			words++;
-		if (s[i] == c && s[i + 1] == c)
+		if (s[i] == c && s[i + 1] == c && is_between_quote(s, i) == '0')
 		{
 			op++;
 			i++;
 		}
-		else if (s[i] == c)
+		else if (s[i] == c && is_between_quote(s, i) == '0')
 			op++;
 		i++;
 	}
 	return (words + op);
 }
 
-size_t	lenword_op(const char *s, size_t i, char c)
+int	lenword_op(char *s, int i, char c)
 {
-	size_t	len;
-	int		limit;
+	int	len;
+	int	limit;
 
 	len = 0;
 	limit = 2;
-	if (s[i] == c)
+	if (s[i] == c && is_between_quote(s, i) == '0')
 	{
-		while (s[i] && s[i] == c && limit--)
+		while (s[i] && s[i] == c && is_between_quote(s, i) == '0' && limit--)
+		{
+			len++;
 			i++;
-		return (i);
+		}
+		return (len);
 	}
-	while (s[i] && s[i] != c)
+	while (s[i] && (s[i] != c || is_between_quote(s, i) != '0'))
 	{
 		len++;
 		i++;
@@ -58,10 +62,10 @@ size_t	lenword_op(const char *s, size_t i, char c)
 	return (len);
 }
 
-char	*cpyword_op(char *s, size_t *i, size_t len)
+char	*cpyword_op(char *s, int *i, int len)
 {
 	char	*str;
-	size_t	u;
+	int		u;
 
 	u = 0;
 	str = malloc(sizeof(char) * (len + 1));
@@ -79,7 +83,7 @@ char	*cpyword_op(char *s, size_t *i, size_t len)
 
 char	**freeall_op(char **tab)
 {
-	size_t	j;
+	int	j;
 
 	j = 0;
 	while (tab[j])
@@ -93,9 +97,9 @@ char	**freeall_op(char **tab)
 
 char	**ft_split_operators(char *s, char c)
 {
-	size_t		i;
-	size_t		j;
-	char		**tab;
+	int		i;
+	int		j;
+	char	**tab;
 
 	i = 0;
 	j = 0;

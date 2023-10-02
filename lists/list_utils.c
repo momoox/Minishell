@@ -6,7 +6,7 @@
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 14:32:42 by momox             #+#    #+#             */
-/*   Updated: 2023/09/29 21:07:04 by momox            ###   ########.fr       */
+/*   Updated: 2023/10/02 00:13:52 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ void	lstadd_back(t_list **first, t_list *new)
 
 void	list_back(t_list *list)
 {
+	if (!list)
+	return ;
 	while (list->prev)
 		list = list->prev;
 }
