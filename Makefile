@@ -6,7 +6,7 @@
 #    By: momox <momox@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/28 20:23:57 by momox             #+#    #+#              #
-#    Updated: 2023/10/02 03:26:28 by momox            ###   ########.fr        #
+#    Updated: 2023/10/02 21:48:10 by momox            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ SRCS = main.c init_struct.c print_tab.c print_token.c\
 		parser/file_inout.c \
 		parser/tokenize.c \
 		parser/cmd_tab.c \
+		parser/ft_signals.c \
 		lists/list_utils.c \
 		lists/list_utils_2.c \
 

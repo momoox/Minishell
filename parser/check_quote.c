@@ -6,24 +6,38 @@
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 18:19:24 by momox             #+#    #+#             */
-/*   Updated: 2023/10/02 19:24:03 by momox            ###   ########.fr       */
+/*   Updated: 2023/10/02 23:28:13 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
+int	last_quote
+
+char	where_is_quote(char *str)
+{
+	char	quote;
+	int		i;
+
+	quote = '0';
+	i = 0;
+	if (!str)
+		return (1);
+	while (str[i] && i <= index)
+	{
+		if (quote == '0' && (str[i] == '\'' || str[i] == '\"'))
+		{
+			quote = str[i];
+			return (quote);
+		}
+		i++;
+	}
+	return (quote);
+}
+
 void	quote_remove(t_list *list)
 {
-	t_list	*temp;
-
-	temp = list;
-	while (temp)
-	{
-		if (is_between_quote(temp->content, 0) != '0')
-			temp->content = ft_substr(temp->content, 1,
-					ft_strlen(temp->content) - 2);
-		temp = temp->next;
-	}
+	
 }
 
 char	is_between_quote(char *str, int index)
