@@ -23,10 +23,7 @@ int	parser(t_data *data)
 	if (ft_strchr(data->input, '<'))
 		split_op(data, '<');
 	if (ft_strchr(data->input, '>'))
-	{
-		printf("split >\n");
 		split_op(data, '>');
-	}
 	if (!(ft_strncmp(data->input, "<<", 2) == 0))
 		split_hd(data->list);
 	tokenize(data);
