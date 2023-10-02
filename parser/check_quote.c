@@ -6,11 +6,25 @@
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 18:19:24 by momox             #+#    #+#             */
-/*   Updated: 2023/10/02 02:12:56 by momox            ###   ########.fr       */
+/*   Updated: 2023/10/02 03:50:10 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+// void	quote_remove(t_list *list)
+// {
+// 	t_list	*temp;
+
+// 	temp = list;
+// 	while (temp)
+// 	{
+// 		if (is_between_quote(temp->content, 0) != '0'
+// 			&& is_between_quote(temp->content, ft_strlen(temp->content)) != '0')
+// 			temp->content = ft_substr(temp->content, 1, ft_strlen(temp->content - 1));
+// 		temp = temp->next;
+// 	}
+// }
 
 char	is_between_quote(char *str, int index)
 {

@@ -6,7 +6,7 @@
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 15:38:23 by mgeisler          #+#    #+#             */
-/*   Updated: 2023/10/01 21:26:25 by momox            ###   ########.fr       */
+/*   Updated: 2023/10/02 03:47:39 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,9 @@ void	sig_handler(int signo);
 
 /* parser */
 int		parser(t_data *data);
-// int		check_quote(t_data *data);
+int		check_char(char *str);
 char	check_quote(char *str);
+void	quote_remove(t_list *list);
 char	is_between_quote(char *str, int index);
 int		is_operator(char c);
 void	ft_here_doc(char *bp, t_data *data);

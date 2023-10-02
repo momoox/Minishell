@@ -1,24 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_operator.c                                      :+:      :+:    :+:   */
+/*   check_char.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/01 21:18:21 by momox             #+#    #+#             */
-/*   Updated: 2023/10/02 03:51:12 by momox            ###   ########.fr       */
+/*   Created: 2023/10/02 03:19:13 by momox             #+#    #+#             */
+/*   Updated: 2023/10/02 03:19:39 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	is_operator(char c)
+int	check_char(char *str)
 {
-	if (c == '|')
-		return (1);
-	if (c == '<')
-		return (1);
-	if (c == '>')
-		return (1);
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == 92 || str[i] == '(' || str[i] == ')'
+			|| (str[i] == '&' && str[i + 1] == '&')
+			|| (str[i] == '|' && str[i + 1] == '|'))
+		{
+			printf("minishell: syntax error near unexpected token `%c'\n",
+				str[i]);
+			return (1);
+		}
+		i++;
+	}
 	return (0);
 }

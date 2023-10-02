@@ -6,7 +6,7 @@
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 16:21:33 by momox             #+#    #+#             */
-/*   Updated: 2023/10/02 02:42:03 by momox            ###   ########.fr       */
+/*   Updated: 2023/10/02 03:50:13 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,10 @@ int	parser(t_data *data)
 {
 	if (check_quote(data->input) != '0')
 		exit(0);
+	if (check_char(data->input))
+		exit(0);
 	split_line(data);
+	// quote_remove(data->list);
 	env_check(data);
 	if (ft_strchr(data->input, '|'))
 		split_op(data, '|');
@@ -36,6 +39,5 @@ int	parser(t_data *data)
 	// print_exec(data);
 	//print_token(data->list);
 	//envoyer data
-	//gérer les guillemets
-	//renvoyer une erreur quand parenthèse
+	//virer les guillemets genre 1st et last
 	//pour entrée term = stdin NULL pareil pour sortie

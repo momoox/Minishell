@@ -6,16 +6,18 @@
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 19:55:40 by momox             #+#    #+#             */
-/*   Updated: 2023/10/02 02:41:32 by momox            ###   ########.fr       */
+/*   Updated: 2023/10/02 03:17:23 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	redir_error(t_list *temp)
+void	redir_error_check(t_list *temp)
 {
-	printf("minishell: syntax error near unexpected token `%s'\n",
-		temp->content);
+	if ((temp->token == REDIR_IN || temp->token == REDIR_OUT
+			|| temp->token == REDIR_APPEND) && temp->next->token != FILES)
+		printf("minishell: syntax error near unexpected token `%s'\n",
+			temp->content);
 }
 
 void	file_inout(t_list *list)
@@ -41,7 +43,7 @@ void	file_inout(t_list *list)
 			temp = temp->next;
 		}
 		else
-			redir_error(temp);
+			redir_error_check(temp);
 		temp = temp->next;
 	}
 }
