@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split.c                                         :+:      :+:    :+:   */
+/*   ft_split_pipe.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 23:55:12 by oliove            #+#    #+#             */
-/*   Updated: 2023/08/03 23:10:01 by oliove           ###   ########.fr       */
+/*   Updated: 2023/10/03 04:09:15 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ static char	*ft_substr_mod(char const *s, unsigned int start, size_t len)
 	j = 0;
 	if (!s)
 		return (NULL);
-	if (len > ft_strlen(s) - start)
-		len = ft_strlen(s) - start;
-	if (start > (unsigned int)ft_strlen(s))
+	if (len > ft_strlen_pipe(s) - start)
+		len = ft_strlen_pipe(s) - start;
+	if (start > (unsigned int)ft_strlen_pipe(s))
 		len = 0;
 	dest = malloc(sizeof(char) * (len + 1));
 	if (!dest)
@@ -78,7 +78,7 @@ static void	*ft_free(char **tab, int w)
 	return (NULL);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split_pipe(char const *s, char c)
 {
 	char	**tab;
 	int		i;
@@ -96,13 +96,17 @@ char	**ft_split(char const *s, char c)
 		i = j;
 		while (s[i] && s[i] == c)
 			i++;
+		printf("split_pipe : S = [%s]\n",s);
 		j = i;
 		while (s[j] && s[j] != c)
 			j++;
+		printf("split_pipe : S = [%s]\n",s);
 		tab[w++] = ft_substr_mod(s, i, j - i);
 		if (!tab[w - 1])
 			return (ft_free(tab, w));
 		tab[w] = NULL;
 	}
+	
+	printf("split_pipe : tab = [%s]\n",*tab);
 	return (tab);
 }

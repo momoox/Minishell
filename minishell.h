@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
+/*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 15:38:23 by mgeisler          #+#    #+#             */
-/*   Updated: 2023/10/02 21:57:59 by momox            ###   ########.fr       */
+/*   Updated: 2023/10/03 02:15:59 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,15 @@ typedef struct s_list
 
 typedef struct s_exec
 {
-	t_list			*stdin;
+	t_list			*stdin_st;
+	
+	int				fd_in;
+	int				fd_out;
+	
+	int				fd_pipe[2];
+	
+	t_list			*stdout_st;
 	char			**cmd;
-	t_list			*stdout;
 }					t_exec;
 
 typedef struct s_data
@@ -149,5 +155,9 @@ void	print_exec(t_data *data);
 void	print_tab(t_data *data);
 void	printtab2(char **tab);
 void	print_token(t_list *list);
+
+/*olive*/
+int		count_pipe(t_list *list);
+void	run_exec(t_data *data);
 
 #endif

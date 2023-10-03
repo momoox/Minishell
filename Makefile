@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: momox <momox@student.42.fr>                +#+  +:+       +#+         #
+#    By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/28 20:23:57 by momox             #+#    #+#              #
-#    Updated: 2023/10/02 21:48:10 by momox            ###   ########.fr        #
+#    Updated: 2023/10/03 03:11:10 by oliove           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,12 @@ SRCS = main.c init_struct.c print_tab.c print_token.c\
 		parser/ft_signals.c \
 		lists/list_utils.c \
 		lists/list_utils_2.c \
+		pipex/src/ft_exec_pipe.c \
+		pipex/src/processes.c \
+		pipex/src/path_cmd.c \
+		pipex/utils/utils_str.c \
+		pipex/utils/ft_split_pipe.c \
+
 
 OBJECTS = $(SRCS:.c=.o)
 
@@ -48,13 +54,25 @@ LIB = -lreadline -L /opt/homebrew/Cellar/readline/8.2.1/lib
 INCLUDE = -I /opt/homebrew/Cellar/readline/8.2.1/include/
 CC = gcc -Wall -Werror -Wextra -g -fsanitize=address
 
+
+ifeq (${42},1)
+	LIB = -lreadline -L /Users/$$USER/.brew/opt/readline/lib
+	INCLUDE = -I /Users/$$USER/.brew/opt/readline/include
+	CC = gcc
+	CFLAGS = -Wall -Werror -Wextra
+endif
+
+ifeq ($(DEBUG), 1)
+	CFLAGS	+=	-g3 -fsanitize=address
+endif
+
 .c.o:
-	@$(CC) $(INCLUDE) -c $< -o $(<:.c=.o)
+	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $(<:.c=.o)
 
 all : $(NAME)
 
 $(NAME): $(OBJECTS)
-		@$(CC) $(LIB) $(INCLUDE) $(SRCS) -o $(NAME)
+		@$(CC) $(CFLAGS) $(LIB) $(INCLUDE) $(SRCS) -o $(NAME)
 
 clean:
 		@rm -f $(OBJECTS)

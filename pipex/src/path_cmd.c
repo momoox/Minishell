@@ -6,7 +6,7 @@
 /*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 22:54:40 by oliove            #+#    #+#             */
-/*   Updated: 2023/08/07 23:36:50 by oliove           ###   ########.fr       */
+/*   Updated: 2023/10/03 04:18:59 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,20 @@ void	*ft_path_dir(char **cmd, char *path, int i)
 	path_directo = ft_split(path, ':');
 	while (path_directo[++i] != NULL)
 	{
-		tmp = ft_strjoin(path_directo[i], "/");
-		name = ft_strjoin(tmp, cmd[0]);
-		// free(tmp);
+		tmp = ft_strjoin_pipe(path_directo[i], "/");
+		name = ft_strjoin_pipe(tmp, cmd[0]);
+		free(tmp);
 		if (access(name, F_OK) == 0)
 		{
 			i = 0;
-			// while (path_directo[i])
-			// 	free(path_directo[i++]);
+			while (path_directo[i])
+				free(path_directo[i++]);
 			free(cmd[0]);
 			cmd[0] = name;
 			return (name);
 		}
+		printf("ft_path_dir : name = [%s]\n",name);
+		printf("ft_path_dir : cmd = [%s]\n",cmd[0]);
 		free(name);
 	}
 	return (cmd);
