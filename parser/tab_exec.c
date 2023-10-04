@@ -74,11 +74,10 @@ void	tab_exec(t_data *data)
 {
 	t_list	*temp;
 	int		i;
-	int		nb_pipe;
 
 	temp = data->list;
 	i = 0;
-	nb_pipe = count_pipe(temp);
-	init_exec(data, nb_pipe);
-	create_tab(data, temp, i, nb_pipe);
+	data->nb_exec = count_pipe(temp);
+	init_exec(data, data->nb_exec);
+	create_tab(data, temp, i, data->nb_exec);
 }
