@@ -75,6 +75,7 @@ typedef struct s_data
 {
 	int				flag_unlink;
 	char			*input;
+	int			nb_exec;
 	char			**env;
 	char			**parsed_line;
 	t_exec			*exec;
