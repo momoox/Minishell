@@ -6,7 +6,7 @@
 /*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 18:19:24 by momox             #+#    #+#             */
-/*   Updated: 2023/10/03 00:06:38 by oliove           ###   ########.fr       */
+/*   Updated: 2023/10/04 02:19:02 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@
 // 	return (quote);
 // }
 
-void	quote_remove(t_list *list)
-{
-	(void)list;
+// void	quote_remove(t_list *list)
+// {
+// 	(void)list;
 	
-}
+// }
 
 char	is_between_quote(char *str, int index)
 {

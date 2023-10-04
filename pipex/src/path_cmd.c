@@ -6,46 +6,49 @@
 /*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 22:54:40 by oliove            #+#    #+#             */
-/*   Updated: 2023/10/03 04:18:59 by oliove           ###   ########.fr       */
+/*   Updated: 2023/10/04 02:19:32 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/util.h"
 
-int	check_path_slash(char *path, char **cmd)
+int	check_path_slash(char *path, char *cmd)
 {
-	if (path == NULL || cmd[0][0] == '/' || (ft_strlen(cmd[0]) >= 2
-			&& cmd[0][0] == '.' && cmd[0][1] == '/') || (ft_strlen(cmd[0]) >= 3
-			&& cmd[0][0] == '.' && cmd[0][1] == '.' && cmd[0][2] == '/'))
+	if (!cmd)
+		return -1;
+	if (path == NULL || cmd[0] == '/' || (ft_strlen(cmd) >= 2
+			&& cmd[0] == '.' && cmd[1] == '/') || (ft_strlen(cmd) >= 3
+			&& cmd[0] == '.' && cmd[1] == '.' && cmd[2] == '/'))
 		return (0);
 	return (-1);
 }
 
-void	*ft_path_dir(char **cmd, char *path, int i)
+
+void	*ft_path_dir(char *cmd, char *path, int i)
 {
 	char	**path_directo;
 	char	*name;
 	char	*tmp;
-
+	// printf("ft_path_dir : cmd == [%s]\n",cmd);
 	if (check_path_slash(path, cmd) == 0)
-		return (cmd[0]);
+		return (cmd);
 	path_directo = ft_split(path, ':');
 	while (path_directo[++i] != NULL)
 	{
 		tmp = ft_strjoin_pipe(path_directo[i], "/");
-		name = ft_strjoin_pipe(tmp, cmd[0]);
+		name = ft_strjoin_pipe(tmp, cmd);
 		free(tmp);
 		if (access(name, F_OK) == 0)
 		{
 			i = 0;
 			while (path_directo[i])
 				free(path_directo[i++]);
-			free(cmd[0]);
-			cmd[0] = name;
+			free(cmd);
+			// cmd = name;
 			return (name);
 		}
 		printf("ft_path_dir : name = [%s]\n",name);
-		printf("ft_path_dir : cmd = [%s]\n",cmd[0]);
+		printf("ft_path_dir : cmd = [%s]\n",cmd);
 		free(name);
 	}
 	return (cmd);

@@ -6,7 +6,7 @@
 #    By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/28 20:23:57 by momox             #+#    #+#              #
-#    Updated: 2023/10/03 03:11:10 by oliove           ###   ########.fr        #
+#    Updated: 2023/10/04 02:24:28 by oliove           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ SRCS = main.c init_struct.c print_tab.c print_token.c\
 		pipex/src/path_cmd.c \
 		pipex/utils/utils_str.c \
 		pipex/utils/ft_split_pipe.c \
-
+		pipex/utils/ft_strcmp.c \
 
 OBJECTS = $(SRCS:.c=.o)
 

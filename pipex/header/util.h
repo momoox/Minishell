@@ -6,7 +6,7 @@
 /*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 23:16:06 by oliove            #+#    #+#             */
-/*   Updated: 2023/10/03 04:39:07 by oliove           ###   ########.fr       */
+/*   Updated: 2023/10/04 02:20:41 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int		ft_strcmp(const char *s1, const char *s2);
 char	**ft_split_pipe(char const *s, char c);
 char	*ft_strjoin_pipe(char const *s1, char const *s2);
 
-void	*ft_path_dir(char **cmd, char *path, int i);
+void	*ft_path_dir(char *cmd, char *path, int i);
 // void	exece(t_data *data,char **cmd, char **env);
 void	exece(t_data *data,char **cmd, char **env);
 int		file_o(char *file, int b);

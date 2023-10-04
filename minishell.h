@@ -6,7 +6,7 @@
 /*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 15:38:23 by mgeisler          #+#    #+#             */
-/*   Updated: 2023/10/03 02:15:59 by oliove           ###   ########.fr       */
+/*   Updated: 2023/10/04 02:18:52 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ void	sig_hd(int signo);
 int		parser(t_data *data);
 int		check_char(char *str);
 char	check_quote(char *str);
-char	*quote_remove(char *str);
+// char	*quote_remove(char *str);
 void	quote_index(char *str, int *index_tab);
 void	check_quote_remove(t_list *list);
 char	*erase_quote(char *str, int *index_tab);
