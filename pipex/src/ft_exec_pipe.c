@@ -101,25 +101,11 @@ int ft_lstsize(t_list *list)
 
 void ft_pipex(t_data *data)
 {
-    // int i;
     int j;
-    // int fd_stdin;
-    // int fd_stdout;
     int fd_pipe[2];
     pid_t pid;
-    // char *path;
-    // char *args;
-    // path = ft_path_dir(data->exec->cmd[0], ft_my_var(data, "PATH"), -1);
-	// char *tmp;
 
     printf("exec : %d\n", data->nb_exec);
-    for (int k = 0; k < data->nb_exec; k++)
-        for (int l = 0; data->exec[k].cmd[l]; l++)
-            printf("%d : cmd[%d] = %s\n", k, l, data->exec[k].cmd[l]);
-   
-    // while (data->exec->cmd[j] != NULL)
-    // {
-    // printf("ft_pipex : data->fd_in == [%d] | data->fd_out == [%d]\n", data->exec->fd_in, data->exec->fd_out);
     j = 0;
     while (j < data->nb_exec)
     {
@@ -140,72 +126,38 @@ void ft_pipex(t_data *data)
         if (pid == -1)
             exit(EXIT_FAILURE);
          
-        // while (data->exec)
-        // {
-            if (pid == 0) 
-            {
-                printf("in = %d | out = %d\n", data->exec[j].fd_in, data->exec[j].fd_out);
-                data->exec[j].cmd[0] = ft_path_dir(data->exec[j].cmd[0], ft_my_var(data, "PATH"), -1);
-                for (int l = 0; data->exec[j].cmd[l]; l++)
-                    printf("cmd[%d] = %s\n", l, data->exec[j].cmd[l]);
-                // i = ft_pipex2(data, &data->exec[j].fd_in, &data->exec[j].fd_out);
-                // printf("i == [%d]\n",i);
-                // if (j == 0)
-                // {
-                dup2(data->exec[j].fd_out, STDOUT_FILENO);
-                dup2(data->exec[j].fd_in, STDIN_FILENO);
-                if (data->exec[j].fd_out != STDOUT_FILENO)
-                    close(data->exec[j].fd_out);
-                if (data->exec[j].fd_in != STDIN_FILENO)
-                    close(data->exec[j].fd_in); 
-                // exece(data, data->exec->cmd, data->env);
-                execve(data->exec[j].cmd[0], data->exec[j].cmd, data->env);
-                perror("execve a échoué ft_pipex i == 0\n");
-                exit(EXIT_FAILURE);
-                // }
-                // else if(j < ft_lstsize(data->list) - 1) 
-                // {
-                //     printf("Loop\n");
-                //     // close(data->exec->fd_in); 
-                //     // close(data->exec->fd_out);
-
-                //     ft_pipe(data, data->exec[j] data->env);
-                // }
-                // else 
-                // {
-                //     dup2(data->exec->fd_in, 0);
-                //     close(data->exec->fd_out); 
-                //     // exece(data, data->exec->cmd, data->env);
-                //     execve(path, data->exec->cmd, data->env);
-                //     // execve(data->exec->cmd[0], data->exec->cmd, data->env);
-                //     perror("execve a échoué ft_pipex else");
-                //     exit(EXIT_FAILURE);
-                // }
-            }
-            else
-            {
-                if (data->exec[j].fd_in != STDIN_FILENO)
-                    close(data->exec[j].fd_in);
-                if (data->exec[j].fd_out != STDOUT_FILENO)
-                    close(data->exec[j].fd_out);
-                wait(NULL);
-            }
-            // data->exec = data->exec++;
-            j++;
+        if (pid == 0) 
+        {
+            printf("in = %d | out = %d\n", data->exec[j].fd_in, data->exec[j].fd_out);
+            data->exec[j].cmd[0] = ft_path_dir(data->exec[j].cmd[0], ft_my_var(data, "PATH"), -1);
+            for (int l = 0; data->exec[j].cmd[l]; l++)
+                printf("cmd[%d] = %s\n", l, data->exec[j].cmd[l]);
+            dup2(data->exec[j].fd_out, STDOUT_FILENO);
+            dup2(data->exec[j].fd_in, STDIN_FILENO);
+            if (data->exec[j].fd_out != STDOUT_FILENO)
+                close(data->exec[j].fd_out);
+            if (data->exec[j].fd_in != STDIN_FILENO)
+                close(data->exec[j].fd_in); 
+            execve(data->exec[j].cmd[0], data->exec[j].cmd, data->env);
+            perror("execve a échoué ft_pipex i == 0\n");
+            exit(EXIT_FAILURE);
         }
-        
-     
-    //     j++;
-    // }
-    
+        else
+        {
+            if (data->exec[j].fd_in != STDIN_FILENO)
+                close(data->exec[j].fd_in);
+            if (data->exec[j].fd_out != STDOUT_FILENO)
+                close(data->exec[j].fd_out);
+            wait(NULL);
+        }
+        j++;
+    }
 }
 
 void    test_print(t_data *data)
 {
-    t_exec *tmp;
 
     int i = 1;
-    tmp = data->exec;
     printf("[hello %p]\n",data->exec[i].stdin_st);
     if (data->exec && data->exec[i].stdin_st)
     {
@@ -229,13 +181,7 @@ void    test_print(t_data *data)
 
 }
 
-//int ac, char **av, char **env)
 void	run_exec(t_data *data)
 {
-    // print_exec(data);
-    // test_print(data);
-	// if (ac < 5)
-	// 	return (1);
-	// ft_check_error_parser(ac, av);
-	ft_pipex(data);//ac, av, env);
+	ft_pipex(data);
 }

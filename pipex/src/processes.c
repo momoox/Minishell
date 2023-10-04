@@ -84,7 +84,7 @@ char *ft_my_var(t_data *data,char *str)
 	free(var);
 	// if (!data->env[i])
 		// return( NULL);
-	return(data->env[i]);//+size);
+	return(data->env[i]+size);
 }
 
 // void	exece(t_data *data, char **cmd, char **env)
