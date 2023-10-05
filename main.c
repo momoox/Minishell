@@ -19,6 +19,7 @@ void print_debug(t_data *data)
 		printf("---------- EXEC[%d] -----------\n",i);
 		printf("	fd_in = %d\n",data->exec[i].fd_in);
 		printf("	fd_out = %d\n",data->exec[i].fd_out);
+		if(data->exec[i].cmd)
 		for (int i2 = 0; data->exec[i].cmd[i2]; i2++)
 			printf("Cmd[%d] = '%s'",i2,data->exec[i].cmd[i2]);
 		printf("STDIN _ IN\n");
@@ -46,7 +47,7 @@ void	reader(t_data *data)
 		}
 		add_history(data->input);
 		parser(data);
-		// print_debug(data);
+		print_debug(data);
 		// run_exec(data);
 		free(data->input);
 	}
