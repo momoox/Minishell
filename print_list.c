@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_list.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
+/*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 16:06:13 by momox             #+#    #+#             */
-/*   Updated: 2023/10/02 19:31:06 by momox            ###   ########.fr       */
+/*   Updated: 2023/10/05 18:35:04 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@ void	print_list(t_list *list)
 		printf("	NULL\n");
 		return ;
 	}
-	printf("=====PRINT LIST=====\n");
+	printf("\033[0;34m=====PRINT LIST=====\033[0m\n");
 	while (list)
 	{
 
-		printf("List\n");
-		printf("	list->content = %s\n", list->content);
-		printf("	list->Token = %d\n", list->token);
+		printf("\033[0;34mList\033[0m\n");
+		printf("	list->content = \033[0;32m[%s]\033[0m\n", list->content);
+		printf("	list->Token = \033[0;31m[%d]\033[0m\n", list->token);
 		if(list->cmd) 
 		for (int i = 0; list->cmd[i]; i++)
-			printf("		list->cmd[%d] = %s\n",i, list->cmd[i]);
+			printf("		list->cmd\033[0;31m[%d]\033[0m = \033[0;32m[%s]\033[0m\n",i, list->cmd[i]);
 		// if (list->token == COMMAND && list->cmd)
 		// {
 		// 	printf("tab 0 = %s\n", list->cmd[0]);
@@ -36,7 +36,7 @@ void	print_list(t_list *list)
 		// }
 		list = list->next;
 	}
-	printf("	====================\n\n");
+	printf("\033[0;35m	====================\033[0m\n\n");
 }
 		// if (list->next->next == NULL)
 		// printf("list->token = %d\n", list->token);
