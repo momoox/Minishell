@@ -109,6 +109,7 @@ void ft_pipex(t_data *data)
     j = 0;
     while (j < data->nb_exec)
     {
+        // printf("")
         if (j < data->nb_exec - 1)
         {
             if (pipe(fd_pipe) == -1)
@@ -183,5 +184,6 @@ void    test_print(t_data *data)
 
 void	run_exec(t_data *data)
 {
+
 	ft_pipex(data);
 }

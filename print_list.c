@@ -14,10 +14,21 @@
 
 void	print_list(t_list *list)
 {
+	if (list == NULL)
+	{
+		printf("	NULL\n");
+		return ;
+	}
 	printf("=====PRINT LIST=====\n");
 	while (list)
 	{
-		printf("list->content = %s\n\n", list->content);
+
+		printf("List\n");
+		printf("	list->content = %s\n", list->content);
+		printf("	list->Token = %d\n", list->token);
+		if(list->cmd) 
+		for (int i = 0; list->cmd[i]; i++)
+			printf("		list->cmd[%d] = %s\n",i, list->cmd[i]);
 		// if (list->token == COMMAND && list->cmd)
 		// {
 		// 	printf("tab 0 = %s\n", list->cmd[0]);
@@ -25,7 +36,7 @@ void	print_list(t_list *list)
 		// }
 		list = list->next;
 	}
-	printf("====================\n\n");
+	printf("	====================\n\n");
 }
 		// if (list->next->next == NULL)
 		// printf("list->token = %d\n", list->token);

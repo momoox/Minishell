@@ -19,7 +19,7 @@ int	parser(t_data *data)
 	if (check_char(data->input))
 		exit(0);
 	split_line(data);
-	//print_list(data->list);
+	print_list(data->list);
 	env_check(data);
 	if (ft_strchr(data->input, '|'))
 		split_op(data, '|');
@@ -34,10 +34,10 @@ int	parser(t_data *data)
 	cmd_tab(data);
 	file_inout(data->list);
 	tab_exec(data);
-	// print_list(data->list);
+	print_list(data->list);
+	print_exec(data);
+	print_token(data->list);
 	return (0);
 }
-	// print_exec(data);
-	//print_token(data->list);
 	//envoyer data
 	//pour entrée term = stdin NULL pareil pour sortie

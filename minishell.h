@@ -53,6 +53,7 @@ typedef struct s_list
 	char			**cmd;
 	int				flag_delete;
 	enum e_token	token;
+	
 	struct s_list	*next;
 	struct s_list	*prev;
 	struct s_data	*data;
@@ -75,7 +76,7 @@ typedef struct s_data
 {
 	int				flag_unlink;
 	char			*input;
-	int			nb_exec;
+	int				nb_exec;
 	char			**env;
 	char			**parsed_line;
 	t_exec			*exec;

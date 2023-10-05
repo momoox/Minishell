@@ -12,6 +12,22 @@
 
 #include "minishell.h"
 
+void print_debug(t_data *data)
+{
+	for(int i = 0; i < data->nb_exec; i++)
+	{
+		printf("---------- EXEC[%d] -----------\n",i);
+		printf("	fd_in = %d\n",data->exec[i].fd_in);
+		printf("	fd_out = %d\n",data->exec[i].fd_out);
+		for (int i2 = 0; data->exec[i].cmd[i2]; i2++)
+			printf("Cmd[%d] = '%s'",i2,data->exec[i].cmd[i2]);
+		printf("STDIN _ IN\n");
+		print_list(data->exec[i].stdin_st);
+		printf("STDIN _ OUT\n");
+		print_list(data->exec[i].stdout_st);
+	}
+}
+
 void	reader(t_data *data)
 {
 	while (1)
@@ -30,7 +46,8 @@ void	reader(t_data *data)
 		}
 		add_history(data->input);
 		parser(data);
-		run_exec(data);
+		// print_debug(data);
+		// run_exec(data);
 		free(data->input);
 	}
 }
