@@ -6,11 +6,11 @@
 /*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 23:47:57 by oliove            #+#    #+#             */
-/*   Updated: 2023/10/03 04:51:00 by oliove           ###   ########.fr       */
+/*   Updated: 2023/10/22 00:39:05 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/util.h"
+#include "util_exec.h"
 
 int	ft_strlen_pipe(const char *str)
 {

@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   util.h                                             :+:      :+:    :+:   */
+/*   util_exec.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 23:16:06 by oliove            #+#    #+#             */
-/*   Updated: 2023/10/04 02:20:41 by oliove           ###   ########.fr       */
+/*   Updated: 2023/10/22 00:41:11 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTIL_H
-# define UTIL_H
+#ifndef UTIL_EXEC_H
+# define UTIL_EXEC_H
 
 // # include "../lib/get_next_line/get_next_line.h"
 # include <fcntl.h>
@@ -19,7 +19,7 @@
 # include <stdlib.h>
 # include <sys/wait.h>
 # include <unistd.h>
-# include "../../minishell.h"
+# include "minishell.h"
 
 
 void	ft_putstr_fd(char *str, int fd);
@@ -49,4 +49,9 @@ char    *ft_my_var(t_data *data,char *str);
 char    *ft_my_path(t_data *data,char *cmd, char **env);
 char	*ft_strjoin_pipe(char const *s1, char const *s2);
 char	*ft_strjoin_pipe2(char const *s1, char const *s2);
+
+
+// Exec
+
+
 #endif

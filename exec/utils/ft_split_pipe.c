@@ -6,11 +6,11 @@
 /*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 23:55:12 by oliove            #+#    #+#             */
-/*   Updated: 2023/10/03 04:09:15 by oliove           ###   ########.fr       */
+/*   Updated: 2023/10/22 00:38:40 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/util.h"
+#include "util_exec.h"
 
 static int	ft_word_count(char const *s, char car)
 {

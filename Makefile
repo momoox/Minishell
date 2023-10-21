@@ -6,7 +6,7 @@
 #    By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/28 20:23:57 by momox             #+#    #+#              #
-#    Updated: 2023/10/21 22:21:30 by oliove           ###   ########.fr        #
+#    Updated: 2023/10/22 00:37:30 by oliove           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,6 +69,14 @@ SRCS = main.c init_struct.c print_tab.c print_token.c\
 		parser/ft_signals.c \
 		lists/list_utils.c \
 		lists/list_utils_2.c \
+		exec/src/ft_exec_pipe.c \
+		exec/src/path_cmd.c \
+		exec/src/processes.c \
+		exec/utils/debug.c \
+		exec/utils/ft_error.c \
+		exec/utils/ft_split_pipe.c \
+		exec/utils/ft_strcmp.c \
+		exec/utils/utils_str.c \
 
 OBJECTS = $(SRCS:.c=.o)
 

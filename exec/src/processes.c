@@ -6,11 +6,11 @@
 /*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 00:14:52 by oliove            #+#    #+#             */
-/*   Updated: 2023/10/04 02:22:57 by oliove           ###   ########.fr       */
+/*   Updated: 2023/10/22 00:20:47 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/util.h"
+#include "util_exec.h"
 
 // void	ft_pipe(t_data *data, char *cmd, char **env)
 // {

@@ -6,11 +6,11 @@
 /*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 22:54:40 by oliove            #+#    #+#             */
-/*   Updated: 2023/10/04 02:19:32 by oliove           ###   ########.fr       */
+/*   Updated: 2023/10/22 00:20:35 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/util.h"
+#include "util_exec.h"
 
 int	check_path_slash(char *path, char *cmd)
 {

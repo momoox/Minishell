@@ -6,7 +6,7 @@
 /*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 02:47:43 by oliove            #+#    #+#             */
-/*   Updated: 2023/10/21 21:27:10 by oliove           ###   ########.fr       */
+/*   Updated: 2023/10/22 00:31:23 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,35 +17,36 @@ on recois noeud par noeud :
 	- data->env
 les data que jai bessoin dans la struct
 */
-#include "../header/util.h"
+#include "util_exec.h"
+#include "minishell.h"
 
-static int	ft_pipex2(t_data *data, int *fd_stdin, int *fd_stdout)
-{
-	int	cmd1;
-	int	i;
-	int	fd[2];
-	// (void)fd_stdin;
-	// (void)fd_stdout;
+// static int	ft_pipex2(t_data *data, int *fd_stdin, int *fd_stdout)
+// {
+// 	int	cmd1;
+// 	int	i;
+// 	// int	fd[2];
+// 	// (void)fd_stdin;
+// 	// (void)fd_stdout;
     
-	cmd1 = 1;
-	i = 0;
-    printf("ft_pipex2 == data->fd_in[%d] | fd_stdin == [%d] | fd_stdout == [%d] | cmd == [%d]\n",data->exec->fd_in, *fd_stdin, *fd_stdout ,cmd1);
-	if (data->exec->stdin_st && data->list->token == REDIR_IN)
-		*fd_stdin = file_o(data->exec->cmd[0], 0);
-	if (data->exec->fd_in == -1)
-		cmd1 = 0;
-	if(data->exec->stdout_st && data->list->token ==  REDIR_OUT)
-		*fd_stdout = file_o(data->exec->cmd[0], 1);
-	if (!cmd1)
-	{
-		i++;
-		pipe(fd_stdin);
-        close(*fd_stdout);
-		// data->exec->fd_in = fd[0];
-		*fd_stdin = data->exec->fd_in;
-	}
-	return (i);
-}
+// 	cmd1 = 1;
+// 	i = 0;
+//     printf("ft_pipex2 == data->fd_in[%d] | fd_stdin == [%d] | fd_stdout == [%d] | cmd == [%d]\n",data->exec->fd_in, *fd_stdin, *fd_stdout ,cmd1);
+// 	if (data->exec->stdin_st && data->list->token == REDIR_IN)
+// 		*fd_stdin = file_o(data->exec->cmd[0], 0);
+// 	if (data->exec->fd_in == -1)
+// 		cmd1 = 0;
+// 	if(data->exec->stdout_st && data->list->token ==  REDIR_OUT)
+// 		*fd_stdout = file_o(data->exec->cmd[0], 1);
+// 	if (!cmd1)
+// 	{
+// 		i++;
+// 		pipe(fd_stdin);
+//         close(*fd_stdout);
+// 		// data->exec->fd_in = fd[0];
+// 		*fd_stdin = data->exec->fd_in;
+// 	}
+// 	return (i);
+// }
 
 
 int ft_lstsize(t_list *list)
