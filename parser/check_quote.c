@@ -3,43 +3,69 @@
 /*                                                        :::      ::::::::   */
 /*   check_quote.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
+/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 18:19:24 by momox             #+#    #+#             */
-/*   Updated: 2023/10/04 02:19:02 by oliove           ###   ########.fr       */
+/*   Updated: 2023/10/11 22:02:31 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-// int	last_quote;
+void	quote_index(char *str, int *index_tab)
+{
+	static char	quote;
+	static int	i;
+	static int	u;
 
-// char	where_is_quote(char *str)
-// {
-// 	char	quote;
-// 	int		i;
+	while (str[i])
+	{
+		if (quote == '\0' && (str[i] == '\'' || str[i] == '\"'))
+		{
+			quote = str[i];
+			index_tab[u++] = i;
+		}
+		else if (quote != '\0' && str[i] == quote)
+		{
+			quote = '\0';
+			index_tab[u++] = i;
+		}
+		i++;
+	}
+	quote = '\0';
+	i = 0;
+	u = 0;
+}
 
-// 	quote = '0';
-// 	i = 0;
-// 	if (!str)
-// 		return (1);
-// 	while (str[i] && i <= index)
-// 	{
-// 		if (quote == '0' && (str[i] == '\'' || str[i] == '\"'))
-// 		{
-// 			quote = str[i];
-// 			return (quote);
-// 		}
-// 		i++;
-// 	}
-// 	return (quote);
-// }
+char	*quote_remove(char *str)
+{
+	int		*index_tab;
+	int		i;
+	char	*new;
 
-// void	quote_remove(t_list *list)
-// {
-// 	(void)list;
-	
-// }
+	i = 0;
+	index_tab = malloc(sizeof(int) * 100);
+	while (i < 100)
+		index_tab[i++] = -1;
+	i = -1;
+	quote_index(str, index_tab);
+	new = erase_quote(str, index_tab);
+	free(index_tab);
+	return (new);
+}
+
+void	check_quote_remove(t_list *list)
+{
+	t_list	*temp;
+
+	temp = list;
+	while (temp)
+	{
+		if (is_between_quote(temp->content, ft_strlen(temp->content)))
+			temp->content = quote_remove(temp->content);
+		temp = temp->next;
+	}
+}
 
 char	is_between_quote(char *str, int index)
 {
@@ -61,7 +87,7 @@ char	is_between_quote(char *str, int index)
 	return (quote);
 }
 
-char	check_quote(char *str)
+char	check_quote(char *str, t_data *data)
 {
 	char	quote;
 	int		i;
@@ -77,6 +103,10 @@ char	check_quote(char *str)
 		i++;
 	}
 	if (quote != '0')
-		printf("Minishell : syntax error near unexpected token \'%c\'\n", quote);
+	{
+		printf("Minishell : syntax error near unexpected token \'%c\'\n",
+			quote);
+		data->exit_code = 258;
+	}
 	return (quote);
 }

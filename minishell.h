@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
+/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 15:38:23 by mgeisler          #+#    #+#             */
-/*   Updated: 2023/10/04 02:18:52 by oliove           ###   ########.fr       */
+/*   Updated: 2023/10/11 23:32:55 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ typedef struct s_list
 	char			**cmd;
 	int				flag_delete;
 	enum e_token	token;
-	
 	struct s_list	*next;
 	struct s_list	*prev;
 	struct s_data	*data;
@@ -61,15 +60,9 @@ typedef struct s_list
 
 typedef struct s_exec
 {
-	t_list			*stdin_st;
-	
-	int				fd_in;
-	int				fd_out;
-	
-	int				fd_pipe[2];
-	
-	t_list			*stdout_st;
+	t_list			*stdin;
 	char			**cmd;
+	t_list			*stdout;
 }					t_exec;
 
 typedef struct s_data
@@ -79,6 +72,7 @@ typedef struct s_data
 	int				nb_exec;
 	char			**env;
 	char			**parsed_line;
+	int				exit_code;
 	t_exec			*exec;
 	t_list			*list;
 }					t_data;
@@ -103,6 +97,7 @@ void	ft_putendl_fd(char *s, int fd);
 char	**ft_split(char *s, char c);
 void	file_inout(t_list *list);
 char	**ft_tabadd_back(char **tab, char *new_str);
+char	*ft_itoa(int n);
 
 /* main */
 void	reader(t_data *data);
@@ -113,9 +108,9 @@ void	sig_ignore(int signum);
 void	sig_onoff(int i);
 void	sig_hd(int signo);
 int		parser(t_data *data);
-int		check_char(char *str);
-char	check_quote(char *str);
-// char	*quote_remove(char *str);
+int		check_char(char *str, t_data *data);
+char	check_quote(char *str, t_data *data);
+char	*quote_remove(char *str);
 void	quote_index(char *str, int *index_tab);
 void	check_quote_remove(t_list *list);
 char	*erase_quote(char *str, int *index_tab);
@@ -128,6 +123,7 @@ void	split_hd(t_list *list);
 void	tokenize(t_data *data);
 void	tab_exec(t_data *data);
 void	cmd_tab(t_data *data);
+void	check_exit_var(t_data *data);
 
 /* split */
 char	**ft_split_operators(char *s, char c);
@@ -139,6 +135,7 @@ void	print_tab(t_data *data);
 
 /* whitespace */
 int		ft_whitespace(char c);
+int		check_whitespaces(char *s);
 
 /* list utils */
 void	lstadd_front(t_list **first, t_list *new);
@@ -158,11 +155,12 @@ void	reinit(t_data *data);
 void	print_list(t_list *list);
 void	print_exec(t_data *data);
 void	print_tab(t_data *data);
-void	printtab2(char **tab);
+void	printtab2(int *tab);
 void	print_token(t_list *list);
 
-/*olive*/
-int		count_pipe(t_list *list);
-void	run_exec(t_data *data);
+/* builtins */
+int		ft_env(char **env);
+int		ft_echo(char **cmd);
+int		ft_pwd(void);
 
 #endif

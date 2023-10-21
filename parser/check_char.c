@@ -12,7 +12,7 @@
 
 #include "../minishell.h"
 
-int	check_char(char *str)
+int	check_char(char *str, t_data *data)
 {
 	int	i;
 
@@ -26,7 +26,8 @@ int	check_char(char *str)
 		{
 			printf("minishell: syntax error near unexpected token `%c'\n",
 				str[i]);
-			return (1);
+			data->exit_code = 258;
+			return (258);
 		}
 		i++;
 	}

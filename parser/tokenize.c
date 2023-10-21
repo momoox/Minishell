@@ -6,7 +6,7 @@
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 20:13:11 by momox             #+#    #+#             */
-/*   Updated: 2023/10/02 22:15:15 by momox            ###   ########.fr       */
+/*   Updated: 2023/10/12 17:01:46 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	ft_here_doc(char *bp, t_data *data)
 	unlink(".here_doc_minishell_tro_bien");
 	data->flag_unlink = 1;
 	//avoir un flag pour savoir si unlink et oliv unlink
-	//ctrl c fonctionne pas, doit sortir de heredoc
 	free(line);
 }
 
@@ -72,3 +71,4 @@ void	tokenize(t_data *data)
 		temp = temp->next;
 	}
 }
+	 	

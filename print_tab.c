@@ -6,7 +6,7 @@
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 20:43:09 by momox             #+#    #+#             */
-/*   Updated: 2023/09/29 23:35:23 by momox            ###   ########.fr       */
+/*   Updated: 2023/10/03 23:53:45 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,11 @@ void	print_tab(t_data *data)
 	}
 }
 
-void	printtab2(char **tab)
+void	printtab2(int *tab)
 {
 	int	i;
 
 	i = -1;
 	while (tab && tab[++i])
-	{
-		printf("%s\n", tab[i]);
-	}
+		printf("%d\n", tab[i]);
 }

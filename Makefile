@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+         #
+#    By: momox <momox@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/28 20:23:57 by momox             #+#    #+#              #
-#    Updated: 2023/10/04 02:24:28 by oliove           ###   ########.fr        #
+#    Updated: 2023/10/11 23:31:55 by momox            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,9 +26,11 @@ SRCS = main.c init_struct.c print_tab.c print_token.c\
 		libft/ft_putendl.c \
 		libft/ft_split.c \
 		libft/ft_tab_addback.c \
+		libft/ft_itoa.c \
 		parser/parser.c \
 		parser/check_quote.c \
 		parser/check_char.c \
+		parser/erase_quote.c \
 		parser/is_operator.c \
 		parser/split_commands.c \
 		parser/whitespace.c \
@@ -38,15 +40,10 @@ SRCS = main.c init_struct.c print_tab.c print_token.c\
 		parser/file_inout.c \
 		parser/tokenize.c \
 		parser/cmd_tab.c \
+		parser/check_exit_var.c \
 		parser/ft_signals.c \
 		lists/list_utils.c \
 		lists/list_utils_2.c \
-		pipex/src/ft_exec_pipe.c \
-		pipex/src/processes.c \
-		pipex/src/path_cmd.c \
-		pipex/utils/utils_str.c \
-		pipex/utils/ft_split_pipe.c \
-		pipex/utils/ft_strcmp.c \
 
 OBJECTS = $(SRCS:.c=.o)
 
@@ -54,25 +51,13 @@ LIB = -lreadline -L /opt/homebrew/Cellar/readline/8.2.1/lib
 INCLUDE = -I /opt/homebrew/Cellar/readline/8.2.1/include/
 CC = gcc -Wall -Werror -Wextra -g -fsanitize=address
 
-
-ifeq (${42},1)
-	LIB = -lreadline -L /Users/$$USER/.brew/opt/readline/lib
-	INCLUDE = -I /Users/$$USER/.brew/opt/readline/include
-	CC = gcc
-	CFLAGS = -Wall -Werror -Wextra
-endif
-
-ifeq ($(DEBUG), 1)
-	CFLAGS	+=	-g3 -fsanitize=address
-endif
-
 .c.o:
-	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $(<:.c=.o)
+	@$(CC) $(INCLUDE) -c $< -o $(<:.c=.o)
 
 all : $(NAME)
 
 $(NAME): $(OBJECTS)
-		@$(CC) $(CFLAGS) $(LIB) $(INCLUDE) $(SRCS) -o $(NAME)
+		@$(CC) $(LIB) $(INCLUDE) $(SRCS) -o $(NAME)
 
 clean:
 		@rm -f $(OBJECTS)
