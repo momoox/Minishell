@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   check_exit_var.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
+/*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 23:28:11 by momox             #+#    #+#             */
-/*   Updated: 2023/10/21 21:21:15 by momox            ###   ########.fr       */
+/*   Updated: 2023/10/21 22:26:43 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "minishell.h"
 
 int	is_exit_code(char *str)
 {

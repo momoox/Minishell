@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_tab.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
+/*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 20:44:18 by momox             #+#    #+#             */
-/*   Updated: 2023/09/24 21:20:47 by momox            ###   ########.fr       */
+/*   Updated: 2023/10/21 22:26:49 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "minishell.h"
 
 void	cmd_tab(t_data *data)
 {

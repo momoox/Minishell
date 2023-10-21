@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   env_replace.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
+/*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 16:49:25 by momox             #+#    #+#             */
-/*   Updated: 2023/10/11 23:32:37 by momox            ###   ########.fr       */
+/*   Updated: 2023/10/21 22:25:06 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "minishell.h"
 
 char	*identify_replace(t_data *data, char *var_env)
 {

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   tab_exec.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
+/*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 15:38:20 by momox             #+#    #+#             */
-/*   Updated: 2023/10/04 17:11:19 by momox            ###   ########.fr       */
+/*   Updated: 2023/10/21 22:27:22 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "minishell.h"
 
 void	create_tab(t_data *data, t_list *temp, int i, int nb_pipe)
 {

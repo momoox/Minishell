@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tab_addback.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
+/*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 21:38:43 by momox             #+#    #+#             */
-/*   Updated: 2023/09/17 21:39:13 by momox            ###   ########.fr       */
+/*   Updated: 2023/10/21 22:26:11 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "minishell.h"
 
 char	**ft_tabadd_back(char **tab, char *new_str)
 {

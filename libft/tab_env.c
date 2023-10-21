@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   tab_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
+/*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 15:44:31 by momox             #+#    #+#             */
-/*   Updated: 2023/09/29 23:34:28 by momox            ###   ########.fr       */
+/*   Updated: 2023/10/21 22:24:02 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "minishell.h"
 
 void	tab_env(t_data *data, char **env)
 {

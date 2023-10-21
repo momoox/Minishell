@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   erase_quote.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
+/*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 20:17:48 by momox             #+#    #+#             */
-/*   Updated: 2023/10/10 18:49:59 by momox            ###   ########.fr       */
+/*   Updated: 2023/10/21 22:26:53 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "minishell.h"
 
 char	*erase_quote_2(char *str, char *new, int *index_tab, int index_len)
 {

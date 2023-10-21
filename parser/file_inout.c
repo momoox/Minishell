@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   file_inout.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
+/*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 19:55:40 by momox             #+#    #+#             */
-/*   Updated: 2023/10/02 03:17:23 by momox            ###   ########.fr       */
+/*   Updated: 2023/10/21 22:26:58 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "minishell.h"
 
 void	redir_error_check(t_list *temp)
 {

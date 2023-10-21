@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   list_utils_2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
+/*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 22:48:56 by momox             #+#    #+#             */
-/*   Updated: 2023/09/14 20:23:46 by momox            ###   ########.fr       */
+/*   Updated: 2023/10/21 22:27:55 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "minishell.h"
 
 void	ft_lstadd_here(t_list **lst, t_list *new)
 {

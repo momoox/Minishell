@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_operators.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
+/*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 20:22:16 by momox             #+#    #+#             */
-/*   Updated: 2023/10/02 02:19:28 by momox            ###   ########.fr       */
+/*   Updated: 2023/10/21 22:27:05 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "minishell.h"
 
 int	count_op(char *s, char c)
 {
