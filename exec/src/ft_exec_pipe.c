@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exec_pipe.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
+/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 02:47:43 by oliove            #+#    #+#             */
-/*   Updated: 2023/10/22 20:56:31 by oliove           ###   ########.fr       */
+/*   Updated: 2023/10/23 22:45:28 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void ft_pipe(t_data *data)
     int fd_pipe[2];
     pid_t pid;
 
-    printf("exec : %d\n", data->nb_exec);
+    // printf("exec : %d\n", data->nb_exec);
     j = 0;
     while (j < data->nb_exec)
     {
@@ -83,7 +83,7 @@ void ft_pipe(t_data *data)
             data->exec[j].fd_out = STDOUT_FILENO;
         if (j == 0)
             data->exec[j].fd_in = STDIN_FILENO;
-        printf("in = %d | out = %d\n", data->exec[j].fd_in, data->exec[j].fd_out);
+        // printf("in = %d | out = %d\n", data->exec[j].fd_in, data->exec[j].fd_out);
 
         pid = fork();
         if (pid == -1)
@@ -91,11 +91,11 @@ void ft_pipe(t_data *data)
          
         if (pid == 0) 
         {
-            printf("in = %d | out = %d\n", data->exec[j].fd_in, data->exec[j].fd_out);
+            // printf("in = %d | out = %d\n", data->exec[j].fd_in, data->exec[j].fd_out);
             data->exec[j].cmd[0] = ft_path_dir(data->exec[j].cmd[0], ft_my_var(data, "PATH"), -1);
             //print/////////////////////////////////////////////
             for (int l = 0; data->exec[j].cmd[l]; l++)
-                printf("cmd[%d] = %s\n", l, data->exec[j].cmd[l]);
+                // printf("cmd[%d] = %s\n", l, data->exec[j].cmd[l]);
                 /////////////////////////////////////////////////
             dup2(data->exec[j].fd_out, STDOUT_FILENO);
             dup2(data->exec[j].fd_in, STDIN_FILENO);

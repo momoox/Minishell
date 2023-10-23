@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
+/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 22:54:40 by oliove            #+#    #+#             */
-/*   Updated: 2023/10/22 21:06:57 by oliove           ###   ########.fr       */
+/*   Updated: 2023/10/23 21:44:05 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ void	*ft_path_dir(char *cmd, char *path, int i)
 			free(cmd);
 			return (name);
 		}
-		printf("ft_path_dir : name = [%s]\n",name);
-		printf("ft_path_dir : cmd = [%s]\n",cmd);
+		// printf("ft_path_dir : name = [%s]\n",name);
+		// printf("ft_path_dir : cmd = [%s]\n",cmd);
 		free(name);
 	}
 	return (cmd);
