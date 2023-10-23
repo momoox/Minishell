@@ -6,7 +6,7 @@
 /*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 02:47:43 by oliove            #+#    #+#             */
-/*   Updated: 2023/10/21 21:27:10 by oliove           ###   ########.fr       */
+/*   Updated: 2023/10/22 20:56:31 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,14 @@ on recois noeud par noeud :
 	- data->env
 les data que jai bessoin dans la struct
 */
-#include "../header/util.h"
+#include "util_exec.h"
+#include "minishell.h"
 
 static int	ft_pipex2(t_data *data, int *fd_stdin, int *fd_stdout)
 {
 	int	cmd1;
 	int	i;
-	int	fd[2];
+	// int	fd[2];
 	// (void)fd_stdin;
 	// (void)fd_stdout;
     
@@ -31,11 +32,11 @@ static int	ft_pipex2(t_data *data, int *fd_stdin, int *fd_stdout)
 	i = 0;
     printf("ft_pipex2 == data->fd_in[%d] | fd_stdin == [%d] | fd_stdout == [%d] | cmd == [%d]\n",data->exec->fd_in, *fd_stdin, *fd_stdout ,cmd1);
 	if (data->exec->stdin_st && data->list->token == REDIR_IN)
-		*fd_stdin = file_o(data->exec->cmd[0], 0);
+		*fd_stdin = file_o(data,data->exec->cmd[0], 0);
 	if (data->exec->fd_in == -1)
 		cmd1 = 0;
 	if(data->exec->stdout_st && data->list->token ==  REDIR_OUT)
-		*fd_stdout = file_o(data->exec->cmd[0], 1);
+		*fd_stdout = file_o(data, data->exec->cmd[0], 1);
 	if (!cmd1)
 	{
 		i++;
@@ -61,7 +62,7 @@ int ft_lstsize(t_list *list)
     return (i);
 }
 
-void ft_pipex(t_data *data)
+void ft_pipe(t_data *data)
 {
     int j;
     int fd_pipe[2];
@@ -92,14 +93,17 @@ void ft_pipex(t_data *data)
         {
             printf("in = %d | out = %d\n", data->exec[j].fd_in, data->exec[j].fd_out);
             data->exec[j].cmd[0] = ft_path_dir(data->exec[j].cmd[0], ft_my_var(data, "PATH"), -1);
+            //print/////////////////////////////////////////////
             for (int l = 0; data->exec[j].cmd[l]; l++)
                 printf("cmd[%d] = %s\n", l, data->exec[j].cmd[l]);
+                /////////////////////////////////////////////////
             dup2(data->exec[j].fd_out, STDOUT_FILENO);
             dup2(data->exec[j].fd_in, STDIN_FILENO);
             if (data->exec[j].fd_out != STDOUT_FILENO)
                 close(data->exec[j].fd_out);
             if (data->exec[j].fd_in != STDIN_FILENO)
                 close(data->exec[j].fd_in); 
+            
             execve(data->exec[j].cmd[0], data->exec[j].cmd, data->env);
             perror("execve a échoué ft_pipex i == 0\n");
             exit(EXIT_FAILURE);
@@ -114,11 +118,12 @@ void ft_pipex(t_data *data)
         }
         j++;
     }
+    print_debug(data);
 }
 
 
 void	run_exec(t_data *data)
 {
 
-	ft_pipex(data);
+	ft_pipe(data);
 }

@@ -6,7 +6,7 @@
 /*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 15:38:20 by momox             #+#    #+#             */
-/*   Updated: 2023/10/21 22:27:22 by oliove           ###   ########.fr       */
+/*   Updated: 2023/10/22 00:33:18 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,20 @@ void	create_tab(t_data *data, t_list *temp, int i, int nb_pipe)
 		while (temp && temp->token != PIPE)
 		{
 			if (temp->token == REDIR_IN)
-				data->exec[i].stdin = temp;
+				data->exec[i].stdin_st = temp;
 			if (temp->token == COMMAND && data->exec[i].cmd == NULL)
 				data->exec[i].cmd = temp->cmd;
 			if (temp->token == REDIR_OUT || temp->token == REDIR_APPEND)
-				data->exec[i].stdout = temp;
-			if (temp->token == PIPE && data->exec[i].stdin == NULL)
-				data->exec[i].stdin = temp;
-			if (temp->token == PIPE && data->exec[i].stdout == NULL)
-				data->exec[i].stdout = temp;
+				data->exec[i].stdout_st = temp;
+			if (temp->token == PIPE && data->exec[i].stdin_st == NULL)
+				data->exec[i].stdin_st = temp;
+			if (temp->token == PIPE && data->exec[i].stdout_st == NULL)
+				data->exec[i].stdout_st = temp;
 			temp = temp->next;
 		}
 		if (temp && temp->token == PIPE)
 		{
-			data->exec[i + 1].stdin = temp;
+			data->exec[i + 1].stdin_st = temp;
 			temp = temp->next;
 		}
 		i++;
@@ -48,8 +48,8 @@ void	init_exec(t_data *data, int nb_pipe)
 	while (i < nb_pipe)
 	{
 		data->exec[i].cmd = NULL;
-		data->exec[i].stdin = NULL;
-		data->exec[i].stdout = NULL;
+		data->exec[i].stdin_st = NULL;
+		data->exec[i].stdout_st = NULL;
 		i++;
 	}
 }

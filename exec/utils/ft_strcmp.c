@@ -6,11 +6,11 @@
 /*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 00:21:38 by oliove            #+#    #+#             */
-/*   Updated: 2023/09/18 18:45:11 by oliove           ###   ########.fr       */
+/*   Updated: 2023/10/22 00:38:51 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/util.h"
+#include "util_exec.h"
 
 int	ft_strcmp(const char *s1, const char *s2)
 {

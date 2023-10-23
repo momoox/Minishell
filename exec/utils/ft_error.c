@@ -6,11 +6,11 @@
 /*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 00:11:03 by oliove            #+#    #+#             */
-/*   Updated: 2023/08/08 00:15:34 by oliove           ###   ########.fr       */
+/*   Updated: 2023/10/22 00:38:26 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/util.h"
+#include "util_exec.h"
 
 void	ft_exit(int n_exit)
 {

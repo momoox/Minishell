@@ -6,7 +6,7 @@
 #    By: momox <momox@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/28 20:23:57 by momox             #+#    #+#              #
-#    Updated: 2023/10/21 22:41:55 by momox            ###   ########.fr        #
+#    Updated: 2023/10/23 21:20:55 by momox            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ ifeq ($(42),1)
 	LIB = -lreadline -L /Users/$$USER/.brew/opt/readline/lib
 	INCLUDE = -I /Users/$$USER/.brew/opt/readline/include
 	CC = gcc
-	CFLAGS = -Wall -Werror -Wextra
+	CFLAGS = -Wall -Wextra #-Werror
 endif
 
 ifeq ($(DEBUG), 1)
@@ -69,6 +69,17 @@ SRCS = main.c init_struct.c print_tab.c print_token.c\
 		parser/ft_signals.c \
 		lists/list_utils.c \
 		lists/list_utils_2.c \
+		exec/src/ft_exec_pipe.c \
+		exec/src/path_cmd.c \
+		exec/src/processes.c \
+		exec/utils/debug.c \
+		exec/utils/ft_error.c \
+		exec/utils/ft_split_pipe.c \
+		exec/utils/ft_strcmp.c \
+		exec/utils/utils_str.c \
+		builtins/ft_echo.c \
+		builtins/ft_env.c \
+		builtins/ft_pwd.c \
 
 OBJECTS = $(SRCS:.c=.o)
 
