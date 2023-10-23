@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+         #
+#    By: momox <momox@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/28 20:23:57 by momox             #+#    #+#              #
-#    Updated: 2023/10/21 22:21:30 by oliove           ###   ########.fr        #
+#    Updated: 2023/10/21 22:41:55 by momox            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,23 +82,6 @@ $(OBJS_DIR)/%.o:%.c
 	@mkdir -p $(dir $@)
 	@ $(CC) $(INCLUDE) $(HEADER) $(CFLAGS) -c $< -o $@ 
 
-# .c.o:
-# 	@$(CC) $(INCLUDE) -c $< -o $(<:.c=.o)
-
-# all : $(NAME)
-
-# $(NAME): $(OBJECTS)
-# 		@$(CC) $(LIB) $(INCLUDE) $(SRCS) -o $(NAME)
-
-# clean:
-# 		@rm -f $(OBJECTS)
-
-# fclean: clean
-# 		@rm -f $(NAME)
-
-# re: fclean all
-
-# .PHONY: all clean fclean re test
 ################################################################################
 #                                  Makefile  objs                              #
 ################################################################################
@@ -110,7 +93,7 @@ GREEN		:=	\033[1;32m
 YELLOW		:=	\033[1;33m
 BLUE		:=	\033[1;34m
 CYAN 		:=	\033[1;36m
-RM			:=	rm -fr
+RM			:=	rm -rf
 
 all:			$(NAME)
 
