@@ -6,7 +6,7 @@
 /*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 22:54:40 by oliove            #+#    #+#             */
-/*   Updated: 2023/10/22 00:20:35 by oliove           ###   ########.fr       */
+/*   Updated: 2023/10/22 21:06:57 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void	*ft_path_dir(char *cmd, char *path, int i)
 			while (path_directo[i])
 				free(path_directo[i++]);
 			free(cmd);
-			// cmd = name;
 			return (name);
 		}
 		printf("ft_path_dir : name = [%s]\n",name);
@@ -54,15 +53,18 @@ void	*ft_path_dir(char *cmd, char *path, int i)
 	return (cmd);
 }
 
-int	file_o(char *file, int b)
+int	file_o(t_data *data,char *file, int token)
 {
 	int	res;
 
-	if (b == 0)
+	// pour redir_in
+	if (token == 3)
 		res = open(file, O_RDONLY, 0777);
-	if (b == 1)
+	// for redir_out
+	if (token == 5)
 		res = open(file, O_WRONLY | O_CREAT | O_TRUNC, 0777);
-	if (b == 2)
+	// redir_Append
+	if (token == 4)
 		res = open(file, O_WRONLY | O_CREAT | O_APPEND, 0777);
 	if (res == -1)
 		return (-1);

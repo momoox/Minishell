@@ -6,7 +6,7 @@
 /*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 15:38:23 by mgeisler          #+#    #+#             */
-/*   Updated: 2023/10/22 00:41:27 by oliove           ###   ########.fr       */
+/*   Updated: 2023/10/22 20:15:07 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ typedef struct s_exec
 
 typedef struct s_data
 {
-	int				flag_unlink;
+	int				flag_unlink;//here_doc
 	char			*input;
 	int				nb_exec;
 	char			**env;

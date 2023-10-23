@@ -6,7 +6,7 @@
 /*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 23:16:06 by oliove            #+#    #+#             */
-/*   Updated: 2023/10/22 00:41:11 by oliove           ###   ########.fr       */
+/*   Updated: 2023/10/22 21:04:56 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ char	*ft_strjoin_pipe(char const *s1, char const *s2);
 void	*ft_path_dir(char *cmd, char *path, int i);
 // void	exece(t_data *data,char **cmd, char **env);
 void	exece(t_data *data,char **cmd, char **env);
-int		file_o(char *file, int b);
-void	ft_pipe(t_data *data, char *cmd, char **env);
+int		file_o(t_data *data,char *file, int token);
+void	ft_pipe(t_data *data);//, char *cmd, char **env);
 // void	ft_here_doc(char **av);
 void	ft_here_doc_put_in(char **av, int *p_fd);
 
@@ -50,7 +50,8 @@ char    *ft_my_path(t_data *data,char *cmd, char **env);
 char	*ft_strjoin_pipe(char const *s1, char const *s2);
 char	*ft_strjoin_pipe2(char const *s1, char const *s2);
 
-
+//Debug
+void print_debug(t_data *data);
 // Exec
 
 
