@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   erase_quote.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
+/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 20:17:48 by momox             #+#    #+#             */
-/*   Updated: 2023/10/21 22:26:53 by oliove           ###   ########.fr       */
+/*   Updated: 2023/10/25 22:45:56 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*erase_quote_2(char *str, char *new, int *index_tab, int index_len)
 			new[k++] = str[i++];
 	}
 	new[ft_strlen(str) - index_len] = '\0';
-	free(str);
+	// free(str);
 	return (new);
 }
 

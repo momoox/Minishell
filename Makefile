@@ -6,7 +6,7 @@
 #    By: momox <momox@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/28 20:23:57 by momox             #+#    #+#              #
-#    Updated: 2023/10/25 21:28:16 by momox            ###   ########.fr        #
+#    Updated: 2023/10/25 22:37:45 by momox            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@
 
 NAME		:= minishell
 CC			:=	gcc
-CFLAGS		:=	-Wall -Wextra 
+CFLAGS		:=	-Wall -Wextra -Werror
 HEADER		:= -I ./header
 LIB			:= -lreadline -L /opt/homebrew/Cellar/readline/8.2.1/lib
 INCLUDE 	:= -I /opt/homebrew/Cellar/readline/8.2.1/include/ 

@@ -6,7 +6,7 @@
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 20:13:11 by momox             #+#    #+#             */
-/*   Updated: 2023/10/25 21:51:07 by momox            ###   ########.fr       */
+/*   Updated: 2023/10/25 22:41:37 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_here_doc(char *bp, t_data *data)
 	pid_t	pid;
 
 	line = NULL;
-	fd = open(".here_doc_minishell_tro_bien", O_RDWR | O_CREAT | O_TRUNC, 0644);
+	fd = open(".heredocminishelltrobien", O_RDWR | O_CREAT | O_TRUNC, 0644);
 	sig_onoff(0);
 	pid = fork();
 	if (pid == 0)
@@ -34,13 +34,14 @@ void	ft_here_doc(char *bp, t_data *data)
 				break ;
 			free(line);
 		}
+		exit (0);
 	}
 	waitpid(pid, 0, 0);
 	sig_onoff(1);
 	close(fd);
-	unlink(".here_doc_minishell_tro_bien");
+	// unlink(".heredocminishelltrobien");
 	data->flag_unlink = 1;
-	// free(line);
+	free(line);
 }
 
 void	tokenize(t_data *data)
@@ -56,7 +57,8 @@ void	tokenize(t_data *data)
 		{
 			ft_here_doc(temp->next->content, data);
 			temp->token = REDIR_IN;
-			temp->content = ".here_doc_minishell_tro_bien";
+			temp->content = ".heredocminishelltrobien";
+			ft_lstdel_here(&data->list, temp->next);
 		}
 		else if (!(ft_strncmp(temp->content, ">>", 2)))
 			temp->token = REDIR_APPEND;
