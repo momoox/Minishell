@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
+/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 15:40:29 by mgeisler          #+#    #+#             */
-/*   Updated: 2023/10/22 00:40:12 by oliove           ###   ########.fr       */
+/*   Updated: 2023/10/25 21:25:10 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	reader(t_data *data)
 		}
 		add_history(data->input);
 		parser(data);
-		run_exec(data);
+		//run_exec(data);
 		free(data->input);
 	}
 }

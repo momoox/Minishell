@@ -6,7 +6,7 @@
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 18:19:24 by momox             #+#    #+#             */
-/*   Updated: 2023/10/23 21:27:21 by momox            ###   ########.fr       */
+/*   Updated: 2023/10/25 21:49:59 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	check_quote_remove(t_list *list)
 	temp = list;
 	while (temp)
 	{
-		if (is_between_quote(temp->content, ft_strlen(temp->content)))
+		if (is_between_quote(temp->content, ft_strlen(temp->content)) != 0)
 			temp->content = quote_remove(temp->content);
 		temp = temp->next;
 	}

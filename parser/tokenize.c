@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenize.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
+/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 20:13:11 by momox             #+#    #+#             */
-/*   Updated: 2023/10/21 22:27:27 by oliove           ###   ########.fr       */
+/*   Updated: 2023/10/25 21:51:07 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,7 @@ void	ft_here_doc(char *bp, t_data *data)
 	close(fd);
 	unlink(".here_doc_minishell_tro_bien");
 	data->flag_unlink = 1;
-	//avoir un flag pour savoir si unlink et oliv unlink
-	free(line);
+	// free(line);
 }
 
 void	tokenize(t_data *data)
@@ -54,7 +53,11 @@ void	tokenize(t_data *data)
 		if (!(ft_strncmp(temp->content, "|", 1)))
 			temp->token = PIPE;
 		else if (!(ft_strncmp(temp->content, "<<", 2)))
+		{
 			ft_here_doc(temp->next->content, data);
+			temp->token = REDIR_IN;
+			temp->content = ".here_doc_minishell_tro_bien";
+		}
 		else if (!(ft_strncmp(temp->content, ">>", 2)))
 			temp->token = REDIR_APPEND;
 		else if (!(ft_strncmp(temp->content, "<", 1)))

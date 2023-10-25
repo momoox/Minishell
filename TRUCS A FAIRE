@@ -6,6 +6,10 @@ cmd1 > file | cmd2
 cmd 1 sortie file et pas pipe
 entrée pipe
 
+tokenize: trop de lignes heredoc aussi
+
+heredox segfault dans les quotes ??
+
 setup fd
 
 pas à écraser

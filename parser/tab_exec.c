@@ -6,7 +6,7 @@
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 15:38:20 by momox             #+#    #+#             */
-/*   Updated: 2023/10/23 22:44:59 by momox            ###   ########.fr       */
+/*   Updated: 2023/10/25 21:34:44 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	create_tab(t_data *data, t_list *temp, int i, int nb_pipe)
 	{
 		while (temp && temp->token != PIPE)
 		{
+			printf("temp == %s\n", temp->content);
 			if (temp->token == REDIR_IN)
 				data->exec[i].stdin_st = temp;
 			if (temp->token == COMMAND && data->exec[i].cmd == NULL)
