@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exec_pipe.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
+/*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 02:47:43 by oliove            #+#    #+#             */
-/*   Updated: 2023/10/25 22:52:16 by momox            ###   ########.fr       */
+/*   Updated: 2023/10/28 00:12:23 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,30 +20,47 @@ les data que jai bessoin dans la struct
 #include "util_exec.h"
 #include "minishell.h"
 
-static int	ft_pipex2(t_data *data, int *fd_stdin, int *fd_stdout)
+static int	ft_pipe2(t_exec *ex, int *fd_stdin, int *fd_stdout)
 {
 	int	cmd1;
 	int	i;
-	// int	fd[2];
-	// (void)fd_stdin;
-	// (void)fd_stdout;
-    
+	int	fd[2];
+	
+  
+//    ex->fd_in;
+//    ex->fd_out;
+//    ex->stdin_st;
+//    ex->stdout_st;
+   /*
+	Bleu \033[0;34m
+	Noir \033[0;30m
+	Rouge \033[0;31m
+	Vert \033[0;32m
+	Jaune \033[0;33m
+	Violet \033[0;35m
+*/ 
 	cmd1 = 1;
 	i = 0;
-    printf("ft_pipex2 == data->fd_in[%d] | fd_stdin == [%d] | fd_stdout == [%d] | cmd == [%d]\n",data->exec->fd_in, *fd_stdin, *fd_stdout ,cmd1);
-	if (data->exec->stdin_st && data->list->token == REDIR_IN)
-		*fd_stdin = file_o(data,data->exec->cmd[0], 0);
-	if (data->exec->fd_in == -1)
+    printf("ft_pipe2 :\n"); 
+    // printf("data->fd_in[%d] | fd_stdin == [%d] == [%s] | fd_stdout == [%d] | cmd == [%d]\n", ex->fd_in, *fd_stdin,(ex->stdin_st != NULL) ? ex->stdin_st->content : NULL, *fd_stdout ,cmd1);
+	if (ex->stdin_st && ex->stdin_st->token != PIPE){
+        
+        printf("stdin_st \033[0;33m[%s]\033[0m token == \033[0;34m[%d]\033[0m\n",(ex->stdin_st !=NULL) ? ex->stdin_st->content : NULL, (ex->stdin_st !=NULL) ? ex->stdin_st->token : -1);
+		*fd_stdin = file_o(ex->stdin_st->content, ex->stdin_st->token); //data->exec->cmd[0], 0);
+    }
+	if (*fd_stdin == -1)
 		cmd1 = 0;
-	if(data->exec->stdout_st && data->list->token ==  REDIR_OUT)
-		*fd_stdout = file_o(data, data->exec->cmd[0], 1);
+	if(ex->stdout_st && ex->stdout_st->token != PIPE){
+        printf("stdout_st \033[0;33m[%s]\033[0m token == \033[0;34m[%d]\033[0m\n",(ex->stdout_st !=NULL) ? ex->stdout_st->content : NULL,(ex->stdout_st !=NULL) ? ex->stdout_st->token : -1);
+		*fd_stdout = file_o(ex->stdout_st->content, ex->stdout_st->token);//  data->exec->cmd[0], 1);
+    }
+    printf("After_check\n");
 	if (!cmd1)
 	{
 		i++;
-		pipe(fd_stdin);
-        close(*fd_stdout);
-		// data->exec->fd_in = fd[0];
-		*fd_stdin = data->exec->fd_in;
+		pipe(fd);
+        close(fd[1]);
+		fd_stdin = &fd[0];
 	}
 	return (i);
 }
@@ -61,7 +78,7 @@ int ft_lstsize(t_list *list)
     }
     return (i);
 }
-
+ 
 void ft_pipe(t_data *data)
 {
     int j;
@@ -72,6 +89,7 @@ void ft_pipe(t_data *data)
     j = 0;
     while (j < data->nb_exec)
     {
+        
         if (j < data->nb_exec - 1)
         {
             if (pipe(fd_pipe) == -1)
@@ -85,6 +103,7 @@ void ft_pipe(t_data *data)
             data->exec[j].fd_in = STDIN_FILENO;
         // printf("in = %d | out = %d\n", data->exec[j].fd_in, data->exec[j].fd_out);
 
+        ft_pipe2(&data->exec[j],&data->exec[j + 1].fd_in, &data->exec[j].fd_out);
         pid = fork();
         if (pid == -1)
             exit(EXIT_FAILURE);

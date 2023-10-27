@@ -38,19 +38,19 @@ void    test_print(t_data *data)
 
 void print_debug(t_data *data)
 {
-	for(int i = 0; i < data->nb_exec; i++)
-	{
-		printf("\033[0;34m---------- EXEC[%d] -----------\033[0m\n",i);
-		printf("	fd_in = \033[0;31m[%d]\033[0m\n",data->exec[i].fd_in);
-		printf("	fd_out = \033[0;31m[%d]\033[0m\n",data->exec[i].fd_out);
-		if(data->exec[i].cmd)
-		for (int i2 = 0; data->exec[i].cmd[i2]; i2++)
-			printf("Cmd[%d] = '%s'\n",i2,data->exec[i].cmd[i2]);
-		printf("\033[0;34mSTDIN _ IN\033[0m\n");
-		print_list(data->exec[i].stdin_st);
-		printf("\033[0;34mSTDIN _ OUT\033[0m\n");
-		print_list(data->exec[i].stdout_st);
-    }
+	// for(int i = 0; i < data->nb_exec; i++)
+	// {
+	// 	printf("\033[0;34m---------- EXEC[%d] -----------\033[0m\n",i);
+	// 	printf("	fd_in = \033[0;31m[%d]\033[0m\n",data->exec[i].fd_in);
+	// 	printf("	fd_out = \033[0;31m[%d]\033[0m\n",data->exec[i].fd_out);
+	// 	if(data->exec[i].cmd)
+	// 	for (int i2 = 0; data->exec[i].cmd[i2]; i2++)
+	// 		printf("Cmd[%d] = '%s'\n",i2,data->exec[i].cmd[i2]);
+	// 	printf("\033[0;34mSTDIN _ IN\033[0m\n");
+	// 	print_list(data->exec[i].stdin_st);
+	// 	printf("\033[0;34mSTDIN _ OUT\033[0m\n");
+	// 	print_list(data->exec[i].stdout_st);
+    // }
     for (int i = 0; i < data->nb_exec; i++){
         printf("\033[0;34m---------- EXEC_FOR_2[%d] -----------\033[0m\n\n",i);
         printf("\033[0;33m---------- CHECK_FD------------------\033[0m\n");
@@ -60,11 +60,14 @@ void print_debug(t_data *data)
         if(data->exec[i].cmd || data->exec[i].stdin_st->token == FILES || data->exec[i].stdout_st->token == FILES)
             for(int i2 = 0; data->exec[i].cmd[i2]; i2++){
                     printf("Cmd[%d] = '%s'\n",i2,data->exec[i].cmd[i2]);
-                if(data->exec[i].stdin_st)
-                    printf("Cmd[%d] = '%s' | token == [%d]\n",i2,data->exec[i].cmd[i2], data->exec[i].stdin_st->token);
-                if(data->exec[i].stdout_st)
-                    printf("Cmd[%d] = '%s' | token == [%d]\n",i2,data->exec[i].cmd[i2],data->exec[i].stdout_st->token);
-
+                if(data->exec[i].stdin_st){
+                    printf("\033[0;33mStart stdin\033[0m\n");
+                    printf("Cmd_std_in[%d] = '%s' | file == [%s] | token == [%d]\n",i2,data->exec[i].cmd[i2], data->exec[i].stdin_st->content , data->exec[i].stdin_st->token);
+                }
+                if(data->exec[i].stdout_st){
+                    printf("\033[0;33mStart stdout\033[0m\n");
+                    printf("Cmd_std_out[%d] = '%s' | file == [%s] | token == [%d]\n",i2,data->exec[i].cmd[i2], data->exec[i].stdout_st->content , data->exec[i].stdout_st->token);
+                }
             }
         printf("\033[0;34m---------- END_EXEC_FOR_2 -----------\033[0m\n\n");
     }
