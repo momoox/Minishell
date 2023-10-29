@@ -103,7 +103,6 @@ void ft_pipe(t_data *data)
             data->exec[j].fd_in = STDIN_FILENO;
         // printf("in = %d | out = %d\n", data->exec[j].fd_in, data->exec[j].fd_out);
 
-        ft_pipe2(&data->exec[j],&data->exec[j + 1].fd_in, &data->exec[j].fd_out);
         pid = fork();
         if (pid == -1)
             exit(EXIT_FAILURE);
@@ -113,9 +112,10 @@ void ft_pipe(t_data *data)
             // printf("in = %d | out = %d\n", data->exec[j].fd_in, data->exec[j].fd_out);
             data->exec[j].cmd[0] = ft_path_dir(data->exec[j].cmd[0], ft_my_var(data, "PATH"), -1);
             //print/////////////////////////////////////////////
-            for (int l = 0; data->exec[j].cmd[l]; l++)
+            // for (int l = 0; data->exec[j].cmd[l]; l++)
                 // printf("cmd[%d] = %s\n", l, data->exec[j].cmd[l]);
                 /////////////////////////////////////////////////
+            ft_pipe2(&data->exec[j],&data->exec[j + 1].fd_in, &data->exec[j].fd_out);
             dup2(data->exec[j].fd_out, STDOUT_FILENO);
             dup2(data->exec[j].fd_in, STDIN_FILENO);
             if (data->exec[j].fd_out != STDOUT_FILENO)
