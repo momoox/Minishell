@@ -6,7 +6,7 @@
 /*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 02:47:43 by oliove            #+#    #+#             */
-/*   Updated: 2023/10/28 00:12:23 by oliove           ###   ########.fr       */
+/*   Updated: 2023/10/30 22:16:48 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void ft_pipe(t_data *data)
     int j;
     int fd_pipe[2];
     pid_t pid;
+    int status;
 
     // printf("exec : %d\n", data->nb_exec);
     j = 0;
@@ -133,11 +134,13 @@ void ft_pipe(t_data *data)
                 close(data->exec[j].fd_in);
             if (data->exec[j].fd_out != STDOUT_FILENO)
                 close(data->exec[j].fd_out);
-            wait(NULL);
+            waitpid(pid,&status,0);
+            data->exit_code = WEXITSTATUS(status);
         }
         j++;
     }
-    print_debug(data);
+    // print_debug(data);
+    print_res_build(data);
 }
 
 

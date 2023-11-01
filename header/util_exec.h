@@ -6,7 +6,7 @@
 /*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 23:16:06 by oliove            #+#    #+#             */
-/*   Updated: 2023/10/27 22:10:53 by oliove           ###   ########.fr       */
+/*   Updated: 2023/10/30 21:58:37 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ char	*ft_strjoin_pipe2(char const *s1, char const *s2);
 
 //Debug
 void print_debug(t_data *data);
+void	print_res_build(t_data *data);
 // Exec
 
 

@@ -101,5 +101,12 @@ void	print_res_build(t_data *data)
 	printf("\033[0;33m---------- CHECK_FD------------------\033[0m\n");
 	printf("	fd_in = \033[0;31m[%d]\033[0m\n", data->exec[i].fd_in);
 	printf("	fd_out = \033[0;31m[%d]\033[0m\n", data->exec[i].fd_out);
+	// printf("Env_ft_my_var_env = \033[0;31m[%s]\033[0m\n", ft_my_var(data, "ENV"));
+	printf("Env_ft_my_var_path = \033[0;31m[%s]\033[0m\n", ft_my_var(data, "PATH"));
+	printf("Env_ft_my_var_pwd = \033[0;31m[%s]\033[0m\n", ft_my_var(data, "PWD"));
+	printf("Env_ft_my_var_oldpwd = \033[0;31m[%s]\033[0m\n", ft_my_var(data, "OLDPWD"));
+	// printf("Env_build_ft_env = \033[0;31m[%s]\033[0m\n", ft_env(data->env));
+	// printf("Env_build_ft_env = \033[0;31m[%s]\033[0m\n", ft_pwd());
+	
 	printf("\033[0;34m----------END : Check_Return_Building[%d] -----------\033[0m\n\n", i);
 }
