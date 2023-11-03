@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_str.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
+/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 23:47:57 by oliove            #+#    #+#             */
-/*   Updated: 2023/10/22 00:39:05 by oliove           ###   ########.fr       */
+/*   Updated: 2023/11/03 19:51:26 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	ft_strlen_pipe(const char *str)
 {
 	int	i;
+
 	if (!str)
 		return (EXIT_FAILURE);
 	i = 0;
@@ -42,7 +43,7 @@ void	ft_putstr_fd_pipe(char *str, int fd)
 	}
 }
 
-char	*ft_strjoin_pipe(char const *s1, char const *s2)
+char	*ft_strjoin_pipe(t_mall *mall, char const *s1, char const *s2)
 {
 	char	*res;
 	int		len1;
@@ -52,7 +53,7 @@ char	*ft_strjoin_pipe(char const *s1, char const *s2)
 	i = 0;
 	len1 = ft_strlen_pipe(s1);
 	len2 = ft_strlen_pipe(s2);
-	res = malloc(sizeof(char) * (len1 + len2 + 1));
+	res = malloc_plus_plus(&mall, sizeof(char) * (len1 + len2 + 1));
 	if (!res)
 		return (NULL);
 	if (!s1 && !s2)
@@ -68,7 +69,7 @@ char	*ft_strjoin_pipe(char const *s1, char const *s2)
 	res[len1] = '\0';
 	return (res);
 }
-char	*ft_strjoin_pipe2(char const *s1, char const *s2)
+char	*ft_strjoin_pipe2(t_mall *mall, char const *s1, char const *s2)
 {
 	char	*res;
 	int		len1;
@@ -78,7 +79,7 @@ char	*ft_strjoin_pipe2(char const *s1, char const *s2)
 	i = 0;
 	len1 = ft_strlen_pipe(s1);
 	len2 = ft_strlen_pipe(s2);
-	res = malloc(sizeof(char) * (len1 + len2 + 2));
+	res = malloc_plus_plus(&mall, sizeof(char) * (len1 + len2 + 2));
 	if (!res)
 		return (NULL);
 	if (!s1 && !s2)

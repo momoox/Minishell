@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   list_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
+/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 14:32:42 by momox             #+#    #+#             */
-/*   Updated: 2023/10/21 22:27:58 by oliove           ###   ########.fr       */
+/*   Updated: 2023/11/03 19:45:22 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_list	*ft_lstnew(char *str)
+t_list	*ft_lstnew(t_mall *mall, char *str)
 {
 	t_list	*new;
 
-	new = malloc(sizeof(t_list));
+	new = malloc_plus_plus(&mall, sizeof(t_list));
 	if (!new)
 		return (NULL);
 	new->content = str;
@@ -53,10 +53,25 @@ void	lstadd_back(t_list **first, t_list *new)
 	}
 }
 
+void	lstadd_back_mall(t_mall **first, t_mall *new)
+{
+	t_mall	*tmp;
+
+	if (*first == NULL)
+		*first = new;
+	else
+	{
+		tmp = *first;
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = new;
+	}
+}
+
 void	list_back(t_list *list)
 {
 	if (!list)
-	return ;
+		return ;
 	while (list->prev)
 		list = list->prev;
 }

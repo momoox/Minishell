@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_operators.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
+/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 20:22:16 by momox             #+#    #+#             */
-/*   Updated: 2023/10/21 22:27:05 by oliove           ###   ########.fr       */
+/*   Updated: 2023/11/03 19:43:50 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,13 @@ int	lenword_op(char *s, int i, char c)
 	return (len);
 }
 
-char	*cpyword_op(char *s, int *i, int len)
+char	*cpyword_op(t_mall *mall, char *s, int *i, int len)
 {
 	char	*str;
 	int		u;
 
 	u = 0;
-	str = malloc(sizeof(char) * (len + 1));
+	str = malloc_plus_plus(&mall, sizeof(char) * (len + 1));
 	if (!str)
 		return (NULL);
 	str[len] = 0;
@@ -95,7 +95,7 @@ char	**freeall_op(char **tab)
 	return (NULL);
 }
 
-char	**ft_split_operators(char *s, char c)
+char	**ft_split_operators(t_mall *mall, char *s, char c)
 {
 	int		i;
 	int		j;
@@ -105,12 +105,12 @@ char	**ft_split_operators(char *s, char c)
 	j = 0;
 	if (!s)
 		return (0);
-	tab = malloc(sizeof(char *) * (count_op(s, c) + 1));
+	tab = malloc_plus_plus(&mall, sizeof(char *) * (count_op(s, c) + 1));
 	if (!tab)
 		return (0);
 	while (j < count_op(s, c))
 	{
-		tab[j++] = cpyword_op(s, &i, lenword_op(s, i, c));
+		tab[j++] = cpyword_op(mall, s, &i, lenword_op(s, i, c));
 		if (!tab[j - 1])
 			return (freeall_op(tab));
 	}

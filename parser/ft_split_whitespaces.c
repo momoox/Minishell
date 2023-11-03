@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_whitespaces.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
+/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/29 21:59:38 by momox             #+#    #+#             */
-/*   Updated: 2023/10/21 22:27:08 by oliove           ###   ########.fr       */
+/*   Created: 2023/11/03 17:46:47 by momox             #+#    #+#             */
+/*   Updated: 2023/11/03 19:43:42 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ int	count(char *s)
 	i = 1;
 	while (s[i])
 	{
-		if (ft_whitespace(s[i]) 
-			&& is_between_quote(s, i) == '0'
+		if (ft_whitespace(s[i]) && is_between_quote(s, i) == '0'
 			&& !ft_whitespace(s[i - 1]))
 			words++;
 		i++;
@@ -40,9 +39,8 @@ int	lenword(char *s, int i)
 	len = 0;
 	while (s[i] && is_between_quote(s, i) == '0' && ft_whitespace(s[i]))
 		i++;
-	while (s[i]
-		&& (is_between_quote(s, i) != '0'
-			|| (is_between_quote(s, i) == '0' && !ft_whitespace(s[i]))))
+	while (s[i] && (is_between_quote(s, i) != '0' || (is_between_quote(s,
+					i) == '0' && !ft_whitespace(s[i]))))
 	{
 		len++;
 		i++;
@@ -50,7 +48,7 @@ int	lenword(char *s, int i)
 	return (len);
 }
 
-char	*cpyword(char *s, int *i, int len)
+char	*cpyword(t_mall *mall, char *s, int *i, int len)
 {
 	char	*str;
 	int		u;
@@ -58,7 +56,7 @@ char	*cpyword(char *s, int *i, int len)
 	u = 0;
 	while ((ft_whitespace(s[(*i)]) && is_between_quote(s, *i) == '0'))
 		(*i)++;
-	str = malloc(sizeof(char) * (len + 1));
+	str = malloc_plus_plus(&mall, sizeof(char) * (len + 1));
 	if (!str)
 		return (NULL);
 	while (len)
@@ -84,7 +82,7 @@ char	**freeall(char **tab)
 	return (NULL);
 }
 
-char	**ft_split_whitespaces(char *s)
+char	**ft_split_whitespaces(t_mall *mall, char *s)
 {
 	int		i;
 	int		j;
@@ -94,12 +92,12 @@ char	**ft_split_whitespaces(char *s)
 	j = 0;
 	if (!s)
 		return (0);
-	tab = malloc(sizeof(char *) * (count(s) + 1));
+	tab = malloc_plus_plus(&mall, sizeof(char *) * (count(s) + 1));
 	if (!tab)
 		return (0);
 	while (j < count(s))
 	{
-		tab[j++] = cpyword(s, &i, lenword(s, i));
+		tab[j++] = cpyword(mall, s, &i, lenword(s, i));
 		if (!tab[j - 1])
 			return (freeall(tab));
 	}

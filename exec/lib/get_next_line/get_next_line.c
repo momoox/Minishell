@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
+/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 20:24:08 by oliove            #+#    #+#             */
-/*   Updated: 2023/03/14 16:29:14 by oliove           ###   ########.fr       */
+/*   Updated: 2023/11/03 18:48:36 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	read_and_stash(int fd, t_list **stash, int *readed_ptr)
 
 	while (!found_newline(*stash) && *readed_ptr != 0)
 	{
-		buff = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+		buff = malloc_plus_plus(sizeof(char) * (BUFFER_SIZE + 1));
 		if (!buff)
 			return ;
 		*readed_ptr = (int)read(fd, buff, BUFFER_SIZE);
@@ -107,7 +107,7 @@ char	*extract_substring_after_newline(char *str)
 		i++;
 	if (str[i] == '\n')
 		i++;
-	sub = malloc(sizeof(char) * (len - i + 1));
+	sub = malloc_plus_plus(sizeof(char) * (len - i + 1));
 	if (sub == NULL)
 		return (NULL);
 	j = 0;
@@ -129,7 +129,7 @@ void	update_stash(t_list **stash)
 	clean_str = extract_substring_after_newline(last->content);
 	if (clean_str == NULL)
 		return ;
-	new_node = malloc(sizeof(t_list));
+	new_node = malloc_plus_plus(sizeof(t_list));
 	if (new_node == NULL)
 	{
 		free(clean_str);

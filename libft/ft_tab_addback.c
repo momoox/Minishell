@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tab_addback.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
+/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 21:38:43 by momox             #+#    #+#             */
-/*   Updated: 2023/10/21 22:26:11 by oliove           ###   ########.fr       */
+/*   Updated: 2023/11/03 19:27:58 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	**ft_tabadd_back(char **tab, char *new_str)
+char	**ft_tabadd_back(t_mall *mall, char **tab, char *new_str)
 {
 	int		len;
 	int		i;
@@ -23,7 +23,7 @@ char	**ft_tabadd_back(char **tab, char *new_str)
 	len = 0;
 	while (tab[len])
 		len++;
-	new_tab = malloc(sizeof(char *) * (len + 2));
+	new_tab = malloc_plus_plus(&mall, sizeof(char *) * (len + 2));
 	if (!new_tab)
 		return (NULL);
 	i = -1;

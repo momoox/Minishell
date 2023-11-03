@@ -6,7 +6,7 @@
 #    By: momox <momox@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/28 20:23:57 by momox             #+#    #+#              #
-#    Updated: 2023/10/25 22:37:45 by momox            ###   ########.fr        #
+#    Updated: 2023/11/03 17:54:37 by momox            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,7 @@ SRCS = main.c init_struct.c print_tab.c print_token.c\
 		libft/ft_split.c \
 		libft/ft_tab_addback.c \
 		libft/ft_itoa.c \
+		libft/malloc_plus_plus.c \
 		parser/parser.c \
 		parser/check_quote.c \
 		parser/check_char.c \

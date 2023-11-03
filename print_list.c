@@ -6,7 +6,7 @@
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 16:06:13 by momox             #+#    #+#             */
-/*   Updated: 2023/10/02 19:31:06 by momox            ###   ########.fr       */
+/*   Updated: 2023/10/30 18:45:35 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@ void	print_list(t_list *list)
 	while (list)
 	{
 		printf("list->content = %s\n\n", list->content);
+		// if (list->token == FILES)
+		// {
+		// 	printf("token = %d\n", list->token);
+		// }
 		// if (list->token == COMMAND && list->cmd)
 		// {
 		// 	printf("tab 0 = %s\n", list->cmd[0]);

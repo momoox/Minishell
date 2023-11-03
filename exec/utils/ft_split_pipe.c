@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_pipe.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
+/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 23:55:12 by oliove            #+#    #+#             */
-/*   Updated: 2023/10/22 00:38:40 by oliove           ###   ########.fr       */
+/*   Updated: 2023/11/03 19:48:15 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static char	*ft_free_sub(char *str)
 	return (NULL);
 }
 
-static char	*ft_substr_mod(char const *s, unsigned int start, size_t len)
+static char	*ft_substr_mod(t_mall *mall, char const *s, unsigned int start, size_t len)
 {
 	int		i;
 	int		j;
@@ -51,7 +51,7 @@ static char	*ft_substr_mod(char const *s, unsigned int start, size_t len)
 		len = ft_strlen_pipe(s) - start;
 	if (start > (unsigned int)ft_strlen_pipe(s))
 		len = 0;
-	dest = malloc(sizeof(char) * (len + 1));
+	dest = malloc_plus_plus(&mall, sizeof(char) * (len + 1));
 	if (!dest)
 		return (ft_free_sub(dest));
 	while (s[i])
@@ -78,7 +78,7 @@ static void	*ft_free(char **tab, int w)
 	return (NULL);
 }
 
-char	**ft_split_pipe(char const *s, char c)
+char	**ft_split_pipe(t_mall *mall, char const *s, char c)
 {
 	char	**tab;
 	int		i;
@@ -88,7 +88,8 @@ char	**ft_split_pipe(char const *s, char c)
 	i = 0;
 	j = 0;
 	w = 0;
-	tab = (char **)malloc(sizeof(char *) * (ft_word_count(s, c) + 1));
+	tab = (char **)malloc_plus_plus(&mall, sizeof(char *)
+			* (ft_word_count(s, c) + 1));
 	if (!tab)
 		return (NULL);
 	while (s[i] && s[j] && w < ft_word_count(s, c))
@@ -101,12 +102,11 @@ char	**ft_split_pipe(char const *s, char c)
 		while (s[j] && s[j] != c)
 			j++;
 		printf("split_pipe : S = [%s]\n",s);
-		tab[w++] = ft_substr_mod(s, i, j - i);
+		tab[w++] = ft_substr_mod(mall, s, i, j - i);
 		if (!tab[w - 1])
 			return (ft_free(tab, w));
 		tab[w] = NULL;
 	}
-	
 	printf("split_pipe : tab = [%s]\n",*tab);
 	return (tab);
 }

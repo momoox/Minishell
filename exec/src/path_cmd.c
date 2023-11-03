@@ -6,7 +6,11 @@
 /*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 22:54:40 by oliove            #+#    #+#             */
+<<<<<<< Updated upstream
 /*   Updated: 2023/10/27 22:10:21 by oliove           ###   ########.fr       */
+=======
+/*   Updated: 2023/10/30 18:43:29 by momox            ###   ########.fr       */
+>>>>>>> Stashed changes
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +57,7 @@ void	*ft_path_dir(char *cmd, char *path, int i)
 	return (cmd);
 }
 
+<<<<<<< Updated upstream
 int	file_o(char *file, int token)
 {
 	int	res;
@@ -70,3 +75,22 @@ int	file_o(char *file, int token)
 		return (-1);
 	return (res);
 }
+=======
+// int	file_o(t_data *data,char *file, int token)
+// {
+// 	int	res;
+
+// 	// pour redir_in
+// 	if (token == 3)
+// 		res = open(file, O_RDONLY, 0777);
+// 	// for redir_out
+// 	if (token == 5)
+// 		res = open(file, O_WRONLY | O_CREAT | O_TRUNC, 0777);
+// 	// redir_Append
+// 	if (token == 4)
+// 		res = open(file, O_WRONLY | O_CREAT | O_APPEND, 0777);
+// 	if (res == -1)
+// 		return (-1);
+// 	return (res);
+// }
+>>>>>>> Stashed changes

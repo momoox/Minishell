@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
+/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 22:15:08 by momox             #+#    #+#             */
-/*   Updated: 2023/10/21 22:26:23 by oliove           ###   ########.fr       */
+/*   Updated: 2023/11/03 19:28:03 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ long int	secu(long int nb, char **str)
 	return (nb);
 }
 
-char	*ft_itoa(int n)
+char	*ft_itoa(t_mall *mall, int n)
 {
 	char	*str;
 	int		i;
@@ -53,7 +53,7 @@ char	*ft_itoa(int n)
 
 	nb = n;
 	i = len(nb);
-	str = malloc(sizeof(char) * i + 1);
+	str = malloc_plus_plus(&mall, sizeof(char) * i + 1);
 	if (!str)
 		return (NULL);
 	nb = secu(nb, &str);

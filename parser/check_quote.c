@@ -6,7 +6,7 @@
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 18:19:24 by momox             #+#    #+#             */
-/*   Updated: 2023/10/25 21:49:59 by momox            ###   ########.fr       */
+/*   Updated: 2023/11/03 19:43:25 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,24 +37,24 @@ void	quote_index(char *str, int *index_tab)
 	u = 0;
 }
 
-char	*quote_remove(char *str)
+char	*quote_remove(t_mall *mall, char *str)
 {
 	int		*index_tab;
 	int		i;
 	char	*new;
 
 	i = 0;
-	index_tab = malloc(sizeof(int) * 100);
+	index_tab = malloc_plus_plus(&mall, sizeof(int) * 100);
 	while (i < 100)
 		index_tab[i++] = -1;
 	i = -1;
 	quote_index(str, index_tab);
-	new = erase_quote(str, index_tab);
+	new = erase_quote(mall, str, index_tab);
 	free(index_tab);
 	return (new);
 }
 
-void	check_quote_remove(t_list *list)
+void	check_quote_remove(t_mall *mall, t_list *list)
 {
 	t_list	*temp;
 
@@ -62,7 +62,7 @@ void	check_quote_remove(t_list *list)
 	while (temp)
 	{
 		if (is_between_quote(temp->content, ft_strlen(temp->content)) != 0)
-			temp->content = quote_remove(temp->content);
+			temp->content = quote_remove(mall, temp->content);
 		temp = temp->next;
 	}
 }

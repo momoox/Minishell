@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   whitespace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
+/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 14:12:59 by momox             #+#    #+#             */
-/*   Updated: 2023/10/21 22:27:31 by oliove           ###   ########.fr       */
+/*   Updated: 2023/11/03 17:47:15 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int		check_whitespaces(char *s)
+int	check_whitespaces(char *s)
 {
 	int	len;
 	int	ws;

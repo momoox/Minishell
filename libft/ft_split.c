@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
+/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 17:43:46 by momox             #+#    #+#             */
-/*   Updated: 2023/10/21 22:25:59 by oliove           ###   ########.fr       */
+/*   Updated: 2023/11/03 19:27:53 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,17 @@ size_t	lenword_split(const char *s, size_t i, char c)
 	return (len);
 }
 
-char	*cpyword_split(const char *s, size_t *i, char c, size_t len)
+char	*cpyword_split(t_mall *mall, const char *s, size_t *i, char c)
 {
 	char	*str;
+	size_t	len;
 	size_t	u;
 
 	u = 0;
+	len = lenword_split(s, *i, c);
 	while (s[*i] == c)
 		(*i)++;
-	str = malloc(sizeof(char) * (len + 1));
+	str = malloc_plus_plus(&mall, sizeof(char) * (len + 1));
 	if (!str)
 		return (NULL);
 	while (len)
@@ -77,7 +79,7 @@ char	**freeall_split(char **tab)
 	return (NULL);
 }
 
-char	**ft_split(char *s, char c)
+char	**ft_split(t_mall *mall, char *s, char c)
 {
 	size_t		i;
 	size_t		j;
@@ -87,12 +89,12 @@ char	**ft_split(char *s, char c)
 	j = 0;
 	if (!s)
 		return (0);
-	tab = malloc(sizeof(char *) * (count_split(s, c) + 1));
+	tab = malloc_plus_plus(&mall, sizeof(char *) * (count_split(s, c) + 1));
 	if (!tab)
 		return (0);
 	while (j < count_split(s, c))
 	{
-		tab[j++] = cpyword_split(s, &i, c, lenword_split(s, i, c));
+		tab[j++] = cpyword_split(mall, s, &i, c);
 		if (!tab[j - 1])
 			return (freeall_split(tab));
 	}
