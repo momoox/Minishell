@@ -6,7 +6,7 @@
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 16:21:33 by momox             #+#    #+#             */
-/*   Updated: 2023/11/03 19:42:41 by momox            ###   ########.fr       */
+/*   Updated: 2023/11/04 21:03:58 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,17 @@ int	parser(t_data *data, t_mall *mall)
 		exit(0);
 	if (check_char(data->input, data))
 		exit(0);
-	split_line(data);
-	check_exit_var(data);
-	env_check(data);
+	split_line(mall, data);
+	check_exit_var(mall, data);
+	env_check(mall, data);
 	if (ft_strchr(data->input, '|'))
-		split_op(data, '|');
+		split_op(mall, data, '|');
 	if (ft_strchr(data->input, '<'))
-		split_op(data, '<');
+		split_op(mall, data, '<');
 	if (ft_strchr(data->input, '>'))
-		split_op(data, '>');
+		split_op(mall, data, '>');
 	if (!(ft_strncmp(data->input, "<<", 2)))
-		split_hd(data->list);
+		split_hd(mall, data->list);
 	tokenize(data);
 	check_quote_remove(mall, data->list);
 	print_list(data->list);

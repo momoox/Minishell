@@ -6,7 +6,7 @@
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 15:38:23 by mgeisler          #+#    #+#             */
-/*   Updated: 2023/11/03 19:47:26 by momox            ###   ########.fr       */
+/*   Updated: 2023/11/04 21:03:49 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,12 +88,12 @@ int		ft_strlen(char *str);
 int		ft_strncmp(char *s1, char *s2, size_t len);
 void	tab_env(t_mall *mall, t_data *data, char **env);
 char	*ft_substr(t_mall *mall, char *s, int start, int len);
-void	env_check(t_data *data);
+void	env_check(t_mall *mall, t_data *data);
 int		is_env(char *arg);
 int		env_pos(char *arg);
-char	*get_env(char *arg, int len);
-char	*replace_env(char *arg, char *replace);
-char	*identify_replace(t_data *data, char *var_env);
+char	*get_env(t_mall *mall, char *arg, int len);
+char	*replace_env(t_mall *mall, char *arg, char *replace);
+char	*identify_replace(t_mall *mall, t_data *data, char *var_env);
 char	*ft_strjoin(t_mall *mall, char *s1, char *s2);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
@@ -121,15 +121,15 @@ char	*erase_quote(t_mall *mall, char *str, int *index_tab);
 char	is_between_quote(char *str, int index);
 int		is_operator(char c);
 void	ft_here_doc(char *bp, t_data *data);
-int		split_op(t_data *data, char c);
-void	split_line(t_data *data);
-void	split_hd(t_list *list);
+int		split_op(t_mall *mall, t_data *data, char c);
+void	split_line(t_mall *mall, t_data *data);
+void	split_hd(t_mall *mall, t_list *list);
 void	tokenize(t_data *data);
 void	exec_heredoc(pid_t pid, char *line, char *bp, int fd);
 void	tab_exec(t_mall *mall, t_data *data);
 void	file_manage(t_data *data, t_list *temp, int i);
 void	cmd_tab(t_mall *mall, t_data *data);
-void	check_exit_var(t_data *data);
+void	check_exit_var(t_mall *mall, t_data *data);
 
 /* split */
 char	**ft_split_operators(t_mall *mall, char *s, char c);

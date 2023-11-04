@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
+/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 17:13:21 by momox             #+#    #+#             */
-/*   Updated: 2023/10/21 22:24:50 by oliove           ###   ########.fr       */
+/*   Updated: 2023/11/04 20:54:45 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	is_env(char *arg)
 	return (flag);
 }
 
-void	env_check(t_data *data)
+void	env_check(t_mall *mall, t_data *data)
 {
 	int		env_len;
 	char	*var_env;
@@ -70,9 +70,9 @@ void	env_check(t_data *data)
 					ft_strlen(temp->content) - 2) == '\'')
 				break ;
 			env_len = is_env(temp->content);
-			var_env = get_env(temp->content, env_len);
-			replace = identify_replace(data, var_env);
-			temp->content = replace_env(temp->content, replace);
+			var_env = get_env(mall, temp->content, env_len);
+			replace = identify_replace(mall, data, var_env);
+			temp->content = replace_env(mall, temp->content, replace);
 		}
 		temp = temp->next;
 	}
