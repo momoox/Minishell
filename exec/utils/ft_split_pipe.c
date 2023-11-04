@@ -6,7 +6,7 @@
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 23:55:12 by oliove            #+#    #+#             */
-/*   Updated: 2023/11/03 19:48:15 by momox            ###   ########.fr       */
+/*   Updated: 2023/11/03 22:41:10 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static char	*ft_free_sub(char *str)
 	return (NULL);
 }
 
-static char	*ft_substr_mod(t_mall *mall, char const *s, unsigned int start, size_t len)
+static char	*ft_substr_mod(char const *s, unsigned int start, size_t len)
 {
 	int		i;
 	int		j;
@@ -51,7 +51,7 @@ static char	*ft_substr_mod(t_mall *mall, char const *s, unsigned int start, size
 		len = ft_strlen_pipe(s) - start;
 	if (start > (unsigned int)ft_strlen_pipe(s))
 		len = 0;
-	dest = malloc_plus_plus(&mall, sizeof(char) * (len + 1));
+	dest = malloc(sizeof(char) * (len + 1));
 	if (!dest)
 		return (ft_free_sub(dest));
 	while (s[i])

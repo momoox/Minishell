@@ -6,11 +6,7 @@
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 23:16:06 by oliove            #+#    #+#             */
-<<<<<<< Updated upstream
-/*   Updated: 2023/10/27 22:10:53 by oliove           ###   ########.fr       */
-=======
-/*   Updated: 2023/11/03 19:49:55 by momox            ###   ########.fr       */
->>>>>>> Stashed changes
+/*   Updated: 2023/11/03 22:48:10 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +33,8 @@ char	*ft_strjoin_pipe(t_mall *mall, char const *s1, char const *s2);
 
 void	*ft_path_dir(char *cmd, char *path, int i);
 // void	exece(t_data *data,char **cmd, char **env);
-<<<<<<< Updated upstream
-void	exece(t_data *data,char **cmd, char **env);
-int		file_o(char *file, int token);
-=======
 void	exece(t_data *data, char **cmd, char **env);
-int		file_o(t_data *data, char *file, int token);
->>>>>>> Stashed changes
+int		file_o(char *file, int token);
 void	ft_pipe(t_data *data);//, char *cmd, char **env);
 // void	ft_here_doc(char **av);
 void	ft_here_doc_put_in(char **av, int *p_fd);

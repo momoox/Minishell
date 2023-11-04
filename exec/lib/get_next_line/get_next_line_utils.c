@@ -6,7 +6,7 @@
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 20:24:08 by oliove            #+#    #+#             */
-/*   Updated: 2023/11/03 18:48:23 by momox            ###   ########.fr       */
+/*   Updated: 2023/11/03 22:38:10 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ void	add_to_stash(t_list **stash, char *buff, int readed)
 	t_list	*last;
 	t_list	*new_link;
 
-	new_link = malloc_plus_plus(sizeof(t_list));
+	new_link = malloc(sizeof(t_list));
 	if (new_link == NULL)
 		return ;
 	new_link->next = NULL;
-	new_link->content = malloc_plus_plus(sizeof(char) * (readed + 1));
+	new_link->content = malloc(sizeof(char) * (readed + 1));
 	if (new_link->content == NULL)
 		return ;
 	i = 0;
@@ -79,7 +79,7 @@ void	generate_line(char **line, t_list *stash)
 		}
 		stash = stash->next;
 	}
-	*line = malloc_plus_plus(sizeof(char) * (len + 1));
+	*line = malloc(sizeof(char) * (len + 1));
 }
 
 int	found_newline(t_list *stash)

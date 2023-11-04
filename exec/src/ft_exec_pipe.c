@@ -1,28 +1,14 @@
-<<<<<<< Updated upstream
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_exec_pipe.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
+/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 02:47:43 by oliove            #+#    #+#             */
-/*   Updated: 2023/10/28 00:12:23 by oliove           ###   ########.fr       */
+/*   Updated: 2023/11/03 22:52:29 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-=======
-// /* ************************************************************************** */
-// /*                                                                            */
-// /*                                                        :::      ::::::::   */
-// /*   ft_exec_pipe.c                                     :+:      :+:    :+:   */
-// /*                                                    +:+ +:+         +:+     */
-// /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
-// /*                                                +#+#+#+#+#+   +#+           */
-// /*   Created: 2023/07/25 02:47:43 by oliove            #+#    #+#             */
-// /*   Updated: 2023/10/25 22:52:16 by momox            ###   ########.fr       */
-// /*                                                                            */
-// /* ************************************************************************** */
->>>>>>> Stashed changes
 
 // /*
 // on recois noeud par noeud :
@@ -34,7 +20,6 @@
 // #include "util_exec.h"
 // #include "minishell.h"
 
-<<<<<<< Updated upstream
 static int	ft_pipe2(t_exec *ex, int *fd_stdin, int *fd_stdout)
 {
 	int	cmd1;
@@ -79,50 +64,20 @@ static int	ft_pipe2(t_exec *ex, int *fd_stdin, int *fd_stdout)
 	}
 	return (i);
 }
-=======
-// static int	ft_pipex2(t_data *data, int *fd_stdin, int *fd_stdout)
-// {
-// 	int	cmd1;
-// 	int	i;
-// 	// int	fd[2];
-// 	// (void)fd_stdin;
-// 	// (void)fd_stdout;
-    
-// 	cmd1 = 1;
-// 	i = 0;
-//     printf("ft_pipex2 == data->fd_in[%d] | fd_stdin == [%d] | fd_stdout == [%d] | cmd == [%d]\n",data->exec->fd_in, *fd_stdin, *fd_stdout ,cmd1);
-// 	if (data->exec->stdin_st && data->list->token == REDIR_IN)
-// 		*fd_stdin = file_o(data,data->exec->cmd[0], 0);
-// 	if (data->exec->fd_in == -1)
-// 		cmd1 = 0;
-// 	if(data->exec->stdout_st && data->list->token ==  REDIR_OUT)
-// 		*fd_stdout = file_o(data, data->exec->cmd[0], 1);
-// 	if (!cmd1)
-// 	{
-// 		i++;
-// 		pipe(fd_stdin);
-//         close(*fd_stdout);
-// 		// data->exec->fd_in = fd[0];
-// 		*fd_stdin = data->exec->fd_in;
-// 	}
-// 	return (i);
-// }
->>>>>>> Stashed changes
 
 
 // int ft_lstsize(t_list *list)
 // {
 //     int i;
 
-<<<<<<< Updated upstream
-    i = 0;
-    while (list)
-    {
-        i++;
-        list = list->next;
-    }
-    return (i);
-}
+//     i = 0;
+//     while (list)
+//     {
+//         i++;
+//         list = list->next;
+//     }
+//     return (i);
+// }
  
 void ft_pipe(t_data *data)
 {
@@ -152,43 +107,6 @@ void ft_pipe(t_data *data)
         pid = fork();
         if (pid == -1)
             exit(EXIT_FAILURE);
-=======
-//     i = 0;
-//     while (list)
-//     {
-//         i++;
-//         list = list->next;
-//     }
-//     return (i);
-// }
-
-// void ft_pipe(t_data *data)
-// {
-//     int j;
-//     int fd_pipe[2];
-//     pid_t pid;
-
-//     // printf("exec : %d\n", data->nb_exec);
-//     j = 0;
-//     while (j < data->nb_exec)
-//     {
-//         if (j < data->nb_exec - 1)
-//         {
-//             if (pipe(fd_pipe) == -1)
-//                 exit(0);
-//             data->exec[j + 1].fd_in = fd_pipe[0];
-//             data->exec[j].fd_out = fd_pipe[1];
-//         }
-//         else
-//             data->exec[j].fd_out = STDOUT_FILENO;
-//         if (j == 0)
-//             data->exec[j].fd_in = STDIN_FILENO;
-//         // printf("in = %d | out = %d\n", data->exec[j].fd_in, data->exec[j].fd_out);
-
-//         pid = fork();
-//         if (pid == -1)
-//             exit(EXIT_FAILURE);
->>>>>>> Stashed changes
          
 //         if (pid == 0) 
 //         {
@@ -228,3 +146,4 @@ void ft_pipe(t_data *data)
 
 // 	//ft_pipe(data);
 // }
+}
