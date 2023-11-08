@@ -96,6 +96,34 @@ char	*ft_strjoin_pipe2(t_mall *mall, char const *s1, char const *s2)
 	res[len1] = '\0';
 	return (res);
 }
+char	*ft_strjoin_norml(char const *s1, char const *s2)
+{
+	char	*res;
+	int		len1;
+	int		len2;
+	int		i;
+
+	i = 0;
+	len1 = ft_strlen_pipe(s1);
+	len2 = ft_strlen_pipe(s2);
+	res = malloc(sizeof(char) * (len1 + len2 + 2));
+	if (!res)
+		return (NULL);
+	if (!s1 && !s2)
+		return (NULL);
+	while (s1[i])
+	{
+		res[i] = s1[i];
+		i++;
+	}
+	res[i] = 32;
+	i = 0;
+	while (s2[i])
+		res[len1++] = s2[i++];
+	res[len1] = '\0';
+	return (res);
+}
+
 
 void	ft_putstr_fd_jump(char *str, int fd)
 {
@@ -110,4 +138,35 @@ void	ft_putstr_fd_jump(char *str, int fd)
 		i++;
 	}
 	ft_putchar_fd('\n', fd);
+}
+
+
+int	ft_isalnum(int c)
+{
+	if (ft_isalpha(c) || ft_isdigit(c))
+		return (c);
+	return (0);
+}
+
+int	ft_isalpha(int c)
+{
+	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
+		return (c);
+	return (0);
+}
+
+
+int	ft_isdigit(int c)
+{
+	if (c >= '0' && c <= '9')
+		return (c);
+	return (0);
+}
+
+int	ft_isspace(int c)
+{
+	if (c == ' ' || c == '\t' || c == '\n' || c == '\r'
+		|| c == '\v' || c == '\f')
+		return (c);
+	return (0);
 }

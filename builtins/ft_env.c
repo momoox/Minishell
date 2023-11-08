@@ -11,6 +11,52 @@
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include "util_exec.h"
+
+char	*get_env_var_value(char **env, char *var)
+{
+	int		i;
+	char	*tmp;
+
+	tmp = ft_strjoin_norml(var, "=");
+	printf("get_env_value: tmp == [%s]\n",tmp);
+	if (!tmp)
+		return (NULL);
+	i = 0;
+	while (env[i])
+	{
+		if (ft_strncmp(tmp, env[i], ft_strlen(tmp)) == 0)
+		{
+			free_tmp(tmp);
+			return (ft_strchr(env[i], '=') + 1);
+		}
+		i++;
+	}
+	free_tmp(tmp);
+	return (NULL);
+}
+
+void	update_wds(t_data *data, char *wd)
+{ 
+	// char *old = get_env_var_value(data->env,"PWD");
+	// printf("p_old = [%s]\n",old);
+	// printf("get_env UP_DATE= [%s]\n",old);
+	set_env_var(data, "OLDPWD", get_env_var_value(data->env, "PWD"));
+	printf("old_pwd = [%s]\n",wd);//data->exec->shell->hold_pwd);
+	set_env_var(data, "OLDPWD", wd);
+	if (data->exec->shell->hold_pwd)
+	{
+		free_tmp(data->exec->shell->hold_pwd);
+		data->shell->hold_pwd = ft_strdup_pipe(data->exec->shell->cwd);
+		printf("get_env dat= [%s]\n",data->shell->pwd);
+	}
+	if (data->exec->shell->cwd)
+	{
+		free_tmp(data->shell->cwd);
+		data->shell->cwd = ft_strdup_pipe(wd);
+	}
+	free_tmp(wd);
+}
 
 int	ft_env(char **env)
 {

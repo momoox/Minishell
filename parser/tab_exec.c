@@ -80,6 +80,9 @@ void	init_exec(t_mall *mall, t_data *data, int nb_pipe)
 		data->exec[i].cmd = NULL;
 		data->exec[i].stdin_st = NULL;
 		data->exec[i].stdout_st = NULL;
+		// data->exec[i].shell->cwd = NULL;
+		// data->exec[i].shell->hold_pwd = NULL;
+		// data->exec[i].shell->pwd = NULL;
 		i++;
 	}
 }

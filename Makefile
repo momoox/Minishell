@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: momox <momox@student.42.fr>                +#+  +:+       +#+         #
+#    By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/28 20:23:57 by momox             #+#    #+#              #
-#    Updated: 2023/11/03 17:54:37 by momox            ###   ########.fr        #
+#    Updated: 2023/11/06 03:05:29 by oliove           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,14 @@ ifeq ($(42),1)
 	INCLUDE = -I /Users/$$USER/.brew/opt/readline/include
 	CC = gcc
 	CFLAGS = -Wall -Wextra #-Werror
+endif
+ifeq ($(42),2)
+	LIB = -lreadline -L /opt/homebrew/Cellar/readline/8.2.1/lib
+	INCLUDE 	:= -I /opt/homebrew/Cellar/readline/8.2.1/include/ 
+	CC = gcc
+	CFLAGS = 
+#-Wall -Wextra 
+#-Werror
 endif
 
 ifeq ($(DEBUG), 1)
@@ -81,6 +89,11 @@ SRCS = main.c init_struct.c print_tab.c print_token.c\
 		builtins/ft_echo.c \
 		builtins/ft_env.c \
 		builtins/ft_pwd.c \
+		builtins/ft_export.c \
+		exec/src/ft_cd2.c \
+		exec/src/ft_cd.c \
+		# builtins/ft_cd2 \
+		# builtins/ft_cd \
 
 OBJECTS = $(SRCS:.c=.o)
 

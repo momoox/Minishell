@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
+/*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 21:07:04 by momox             #+#    #+#             */
-/*   Updated: 2023/10/11 23:36:31 by momox            ###   ########.fr       */
+/*   Updated: 2023/11/08 14:22:44 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@ void	init_data(t_data *data)
 	data->list = NULL;
 	data->nb_exec = 0;
 	data->exit_code = 0;
+	data->shell = malloc(sizeof(t_exec_shell));
+	
+	data->shell->cwd = NULL;
+	data->shell->pwd = NULL;
+	data->shell->hold_pwd = NULL;
 }
 
 void	reinit(t_data *data)

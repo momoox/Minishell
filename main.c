@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
+/*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 15:40:29 by mgeisler          #+#    #+#             */
-/*   Updated: 2023/11/03 19:47:12 by momox            ###   ########.fr       */
+/*   Updated: 2023/11/05 22:46:57 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include "util_exec.h"
+
 
 void	reader(t_data *data, t_mall *mall)
 {
@@ -30,7 +32,7 @@ void	reader(t_data *data, t_mall *mall)
 		}
 		add_history(data->input);
 		parser(data, mall);
-		// run_exec(data);
+		run_exec(data, mall);
 		free(data->input);
 	}
 }
@@ -44,5 +46,6 @@ int	main(int argc, char **argv, char **env)
 	(void)argv;
 	init_data(&data);
 	tab_env(&mall, &data, env);
+	// init_data_shell(&data);
 	reader(&data, &mall);
 }

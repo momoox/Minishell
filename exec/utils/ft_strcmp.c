@@ -45,3 +45,44 @@ int	ft_strcmp(const char *s1, const char *s2)
 // 	}
 // 	return (0);
 // }
+
+
+
+char	*ft_strdup_pipe(char *src)
+{
+	char	*dst;
+
+	dst = malloc(sizeof(char) * (ft_strlen(src) + 1));
+	if (!dst)
+		return (0);
+	ft_strlcpy(dst, src, ft_strlen(src) + 1);
+	dst[ft_strlen(src)] = '\0';
+	return (dst);
+}
+
+char	*ft_substr_pipe(char *s, int start, int len)
+{
+	char	*str;
+	int		i;
+	int		slen;
+
+	slen = 0;
+	i = 0;
+	if (!s || start < 0)
+		return (0);
+	if (start >= ft_strlen(s))
+		slen = 0;
+	else
+		while (s[start + slen] != '\0' && slen < len)
+			slen++;
+	str = malloc(sizeof(char) * (slen) + 1);
+	if (!str)
+		return (0);
+	if (slen != 0)
+	{
+		while (s[start] != '\0' && i + 1 <= len)
+			str[i++] = s[start++];
+	}
+	str[i] = '\0';
+	return (str);
+}
