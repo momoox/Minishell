@@ -6,7 +6,7 @@
 #    By: momox <momox@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/28 20:23:57 by momox             #+#    #+#              #
-#    Updated: 2023/11/03 17:54:37 by momox            ###   ########.fr        #
+#    Updated: 2023/11/08 23:20:11 by momox            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,6 +68,7 @@ SRCS = main.c init_struct.c print_tab.c print_token.c\
 		parser/cmd_tab.c \
 		parser/check_exit_var.c \
 		parser/ft_signals.c \
+		parser/file_manage.c \
 		lists/list_utils.c \
 		lists/list_utils_2.c \
 		exec/src/ft_exec_pipe.c \

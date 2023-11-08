@@ -6,7 +6,7 @@
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 15:38:20 by momox             #+#    #+#             */
-/*   Updated: 2023/11/03 19:43:55 by momox            ###   ########.fr       */
+/*   Updated: 2023/11/08 23:49:27 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,41 +19,20 @@ redir out = file, O_WRONLY | O_CREAT | O_TRUNC, 0644
 redir append = file, O_WRONLY | O_CREAT | O_APPEND, 0644
 puis close*/
 
-void	file_manage(t_data *data, t_list *temp, int i)
+void	create_tab(t_mall *mall, t_data *data, t_list *temp, int i)
 {
-	int	fd;
-
-	fd = 0;
-	if (temp->token == REDIR_IN)
-	{
-		fd = open(temp->content, O_RDONLY);
-		data->exec[i].stdin_st = temp;
-	}
-	else if (temp->token == REDIR_OUT)
-	{
-		fd = open(temp->content, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-		data->exec[i].stdout_st = temp;
-	}
-	else if (temp->token == REDIR_APPEND)
-	{
-		fd = open(temp->content, O_WRONLY | O_CREAT | O_APPEND, 0644);
-		data->exec[i].stdout_st = temp;
-	}
-	close(fd);
-}
-
-void	create_tab(t_data *data, t_list *temp, int i, int nb_pipe)
-{
-	while (temp && i < nb_pipe)
+	while (temp && i < data->nb_exec)
 	{
 		while (temp && temp->token != PIPE)
 		{
 			if (temp->token == REDIR_IN)
-				file_manage(data, temp, i);
+				redir_in_manage(mall, data, temp);
 			if (temp->token == COMMAND && data->exec[i].cmd == NULL)
 				data->exec[i].cmd = temp->cmd;
-			if (temp->token == REDIR_OUT || temp->token == REDIR_APPEND)
-				file_manage(data, temp, i);
+			if (temp->token == REDIR_OUT)
+				redir_out_manage(mall, data, temp);
+			if (temp->token == REDIR_APPEND)
+				redir_append_manage(mall, data, temp);
 			if (temp->token == PIPE && data->exec[i].stdin_st == NULL)
 				data->exec[i].stdin_st = temp;
 			if (temp->token == PIPE && data->exec[i].stdout_st == NULL)
@@ -109,5 +88,5 @@ void	tab_exec(t_mall *mall, t_data *data)
 	i = 0;
 	data->nb_exec = count_pipe(temp);
 	init_exec(mall, data, data->nb_exec);
-	create_tab(data, temp, i, data->nb_exec);
+	create_tab(mall, data, temp, i);
 }

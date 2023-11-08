@@ -6,7 +6,7 @@
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 15:38:23 by mgeisler          #+#    #+#             */
-/*   Updated: 2023/11/04 21:03:49 by momox            ###   ########.fr       */
+/*   Updated: 2023/11/08 23:51:38 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ typedef struct s_list
 {
 	char			*content;
 	char			**cmd;
-	int				flag_delete;
 	enum e_token	token;
 	struct s_list	*next;
 	struct s_list	*prev;
@@ -71,6 +70,7 @@ typedef struct s_exec
 typedef struct s_data
 {
 	int				flag_unlink;//here_doc
+	int				flag_delete;
 	char			*input;
 	int				nb_exec;
 	char			**env;
@@ -130,6 +130,10 @@ void	tab_exec(t_mall *mall, t_data *data);
 void	file_manage(t_data *data, t_list *temp, int i);
 void	cmd_tab(t_mall *mall, t_data *data);
 void	check_exit_var(t_mall *mall, t_data *data);
+void	redir_in_manage(t_mall *mall, t_data *data, t_list *list);
+void	redir_out_manage(t_mall *mall, t_data *data, t_list *list);
+void	redir_append_manage(t_mall *mall, t_data *data, t_list *list);
+void	redir_error(t_data *data, t_list *list);
 
 /* split */
 char	**ft_split_operators(t_mall *mall, char *s, char c);

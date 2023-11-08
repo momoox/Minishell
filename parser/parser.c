@@ -6,7 +6,7 @@
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 16:21:33 by momox             #+#    #+#             */
-/*   Updated: 2023/11/04 21:03:58 by momox            ###   ########.fr       */
+/*   Updated: 2023/11/08 23:34:04 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ int	parser(t_data *data, t_mall *mall)
 	if (check_whitespaces(data->input) == 1)
 		return (0);
 	if (check_quote(data->input, data) != '0')
-		exit(0);
+		return (0);
 	if (check_char(data->input, data))
-		exit(0);
+		return (0);
 	split_line(mall, data);
 	check_exit_var(mall, data);
 	env_check(mall, data);
@@ -37,7 +37,9 @@ int	parser(t_data *data, t_mall *mall)
 	cmd_tab(mall, data);
 	file_inout(data->list);
 	tab_exec(mall, data);
-	return (0);
+	if (data->flag_delete != 0)
+		return (0);
+	return (1);
 }
 
 	// print_exec(data);
